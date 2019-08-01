@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/topLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    app:cardBackgroundColor="@color/colorPrimary"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="2dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp">
+
+        <ImageView
+            android:id="@+id/menuImg"
+            android:layout_width="30dp"
+            android:tint="@color/white"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/ic_list_menu"
+            tools:ignore="ContentDescription"
+            android:layout_marginStart="5dp" />
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:padding="3dp"
+            app:srcCompat="@drawable/back_arrow" />
+
+
+
+        <TextView
+            android:id="@+id/tvTableno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:layout_toEndOf="@+id/btnBack"
+            android:layout_toRightOf="@+id/btnBack"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/profile"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_toEndOf="@+id/tvTableno"
+            android:layout_toRightOf="@+id/tvTableno"
+
+            android:layout_centerVertical="true"
+
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+
+
+                android:fontFamily="@font/roboto_regular"
+                android:text="#"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvTablenoCountItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                android:text="awyw"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="3dp"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentEnd="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            app:srcCompat="@drawable/ic_search_black_24dp"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+            android:layout_alignParentRight="true" />
+
+
+
+
+
+        <ImageView
+            android:id="@+id/ivChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="2dp"
+            android:src="@drawable/menu_icon"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded"
+        />
+
+        <TextView
+            android:id="@+id/tvTablenoCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btnBack"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/llHeader"
+            android:layout_toRightOf="@+id/llHeader"
+            android:fontFamily="@font/roboto_regular"
+            android:text="awyw"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/llHeader"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvHeaderTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="@string/profile"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/tvN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="#"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvTablenoCountNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_medium"
+                android:text="awyw"
+
+                android:layout_marginLeft="3dp"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/llCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/llHeader"
+
+            android:layout_toRightOf="@+id/llHeader"
+            android:background="@color/colorPrimary"
+            android:gravity="center|end"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/llMinus"
+                android:layout_width="25dp"
+
+                android:layout_height="25dp"
+               >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tv_quntity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_circle"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <RelativeLayout
+                android:id="@+id/llPlus"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+              >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+
+        <ImageView
+            android:id="@+id/btnNevMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="13dp"
+            android:src="@drawable/menu_icon"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/btnPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="13dp"
+            android:tint="@color/white"
+            android:visibility="gone"
+            app:srcCompat="@drawable/home_inactive" />
+
+
+        <TextView
+            android:id="@+id/txtQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+
+        <RelativeLayout
+            android:id="@+id/rlCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_buyIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:tint="@color/white"
+                    app:srcCompat="@drawable/ic_online_shopping_cart" />
+
+                <RelativeLayout
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/circuler_view"
+                    android:tint="@color/white" >
+
+                    <TextView
+                        android:id="@+id/cartCountTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:text="0"
+                        android:textColor="@color/black" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tvCardRead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="13dp"
+            android:text="Read Card"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true" />
+
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

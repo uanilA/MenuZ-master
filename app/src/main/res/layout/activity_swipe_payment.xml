@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context="com.menuz.ui.Payment.SwipePaymentActivity">
+
+
+    <TextView
+        android:id="@+id/txtAccountNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Account number"
+        android:textColor="@color/white"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/txtTrackToString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Track two string"
+        android:textColor="@color/white"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/txtExpiryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Expiry Date"
+        android:textColor="@color/white"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/txtSwipeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Swipe count"
+        android:textColor="@color/white"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/txtServiceCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Service code"
+        android:textColor="@color/white"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/txtDiscretionary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Discretionary data"
+        android:textColor="@color/white"
+        android:textSize="10pt" />
+
+
+</LinearLayout>

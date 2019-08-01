@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.menuz">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+
+    <application
+        android:name=".application.MenuZ"
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/app_icon_round"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme"
+        tools:node="replace"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.authentication.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+
+        <activity
+            android:name=".ui.Payment.SwipePaymentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"
+            android:windowSoftInputMode="stateHidden" />
+
+
+
+
+        <activity
+            android:name=".ui.Home.activity.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.Order.activity.OrderListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".ui.language.ChangeLanguageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.Order.activity.NewOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.Order.activity.CartDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="089d635a49cabf9e53718efc0180a4dab3a8347a" />
+
+        <activity
+            android:name=".ui.currentorder.activity.CurrentOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.currentorder.activity.OrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew">
+
+        </activity>
+        <activity
+            android:name=".ui.currentorder.activity.EditTableAndZoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.currentorder.activity.EditEmployeeAndGuest"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.Payment.PaymentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.setting.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.Home.activity.SelectWaiterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".Demo.DemoSingleBreakFastActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.currentorder.activity.PrintNotesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
+        <activity
+            android:name=".ui.currentorder.SplitTableActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.authentication.ChangePortActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.GalleryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity android:name=".ui.GalleryDetailActivity"
+
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew">
+        </activity>
+    </application>
+
+</manifest>

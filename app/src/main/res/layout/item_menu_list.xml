@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rlParent"
+  >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl"
+
+        android:layout_centerVertical="true"
+        android:layout_height="50dp">
+
+
+
+        <ImageView
+            android:id="@+id/ivMenu"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/home_inactive"
+            android:layout_marginStart="20dp" />
+
+        <TextView
+            android:id="@+id/txtHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/ivMenu"
+            android:layout_toRightOf="@+id/ivMenu"
+            android:textColor="@color/text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/graynew"
+            android:layout_below="@+id/txtHome"
+
+            android:layout_marginTop="8dp"
+            android:layout_height="1dp"/>
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

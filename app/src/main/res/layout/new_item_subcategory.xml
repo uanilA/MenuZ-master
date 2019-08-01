@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textNew"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/roboto_regular"
+    android:orientation="vertical"
+    android:textColor="@color/black">
+
+
+    <TextView
+        android:id="@+id/txtAddon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+
+        android:layout_margin="7dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtPrep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="dsfghdfs"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtRemark"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:visibility="gone"
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/blue" />
+
+
+</LinearLayout>

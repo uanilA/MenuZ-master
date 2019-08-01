@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_margin="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        app:cardElevation="4dp"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="18dp"
+                app:srcCompat="@drawable/ic_close"
+                android:tint="@color/black"
+                android:id="@+id/imgClose"
+                android:padding="3dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/add_manual_credit_card"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp" />
+
+        </LinearLayout>
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="8dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:hint="Card no"
+            android:inputType="number"
+            android:id="@+id/edCardno"
+            android:textSize="14sp"
+            android:imeOptions="actionNext"
+            android:textColor="@color/black"
+            android:textColorHint="@color/graynew"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_height="wrap_content" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:hint="MM"
+                    android:id="@+id/edMonth"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:maxLength="2"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:background="@null"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/graynew"
+                    android:fontFamily="@font/roboto_regular"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:background="@color/graynew"
+                    android:layout_height="1dp"/>
+
+            </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:hint="YY"
+                    android:id="@+id/edYear"
+                    android:layout_marginTop="5dp"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+                    android:textSize="14sp"
+                    android:maxLength="4"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/graynew"
+                    android:fontFamily="@font/roboto_regular"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:background="@color/graynew"
+                    android:layout_height="1dp"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:hint="Security Code"
+            android:id="@+id/edSecurity"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/graynew"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:hint="ID"
+            android:id="@+id/edId"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+
+            android:textColor="@color/black"
+            android:textColorHint="@color/graynew"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:hint="Phone"
+            android:layout_marginTop="5dp"
+            android:id="@+id/edPhone"
+            android:textSize="14sp"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/graynew"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Split Payment"
+                android:layout_marginTop="5dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:id="@+id/switchSplit"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:visibility="visible"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:hint="Nu of payment"
+                android:layout_weight=".40"
+                android:id="@+id/edNoofPayment"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:focusableInTouchMode="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/graynew"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_weight=".44"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:layout_width="30dp"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/edSp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/graynew"
+                    android:fontFamily="@font/roboto_regular"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_width="60dp"
+                    android:background="@color/graynew"
+                    android:layout_height="1dp"/>
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:visibility="visible"
+
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:hint="First Payment"
+                android:layout_weight=".33"
+                android:id="@+id/edFrirstP"
+                android:focusableInTouchMode="false"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/graynew"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight=".22"
+                android:layout_marginTop="5dp"
+                android:id="@+id/edFristPay"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/graynew"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:visibility="visible"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:hint="Rest Payment"
+                android:layout_weight=".33"
+                android:id="@+id/edRestPay"
+                android:layout_marginTop="5dp"
+                android:textSize="14sp"
+                android:focusableInTouchMode="false"
+                android:textColor="@color/black"
+                android:textColorHint="@color/graynew"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight=".22"
+                android:layout_marginTop="5dp"
+                android:id="@+id/edRest"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/graynew"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/bg_button_drawable"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/done"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        tools:ignore="RtlHardcoded" />
+
+
+
+
+
+</LinearLayout>

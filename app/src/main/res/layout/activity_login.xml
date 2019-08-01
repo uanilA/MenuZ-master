@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/signin_bg"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+
+    tools:context=".ui.authentication.LoginActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/logo"
+                android:id="@+id/img_logo"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="TODO"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="55dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/mitr_regular"
+                    android:text="@string/sign_in"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/bg_placeholder"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_height="35dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:background="@null"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:inputType="textEmailAddress"
+                        android:fontFamily="@font/mitr_regular"
+                        android:hint="@string/username"
+                        android:layoutDirection="ltr"
+                        android:textDirection="ltr"
+
+                        android:id="@+id/edEmail"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        tools:targetApi="jelly_bean_mr1" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/bg_placeholder"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_height="35dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:background="@null"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:inputType="textPassword"
+                        android:fontFamily="@font/mitr_regular"
+                        android:hint="@string/password"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/edPassword"
+                        android:layoutDirection="ltr"
+                        android:textDirection="ltr"
+
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        tools:targetApi="jelly_bean_mr1" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@drawable/bg_button_placeholder"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/sign_in"
+                    android:gravity="center"
+                    android:id="@+id/btnSignIn"
+                    android:fontFamily="@font/mitr_regular"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="20dp"
+                    android:layout_height="38dp" />
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+
+
+
+
+</RelativeLayout>

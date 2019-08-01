@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+
+    android:layout_margin="3dp">
+
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/imgtableFree"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_check_symbol"
+        android:layout_height="30dp" />
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardElevation="10dp"
+        android:id="@+id/card"
+        app:cardCornerRadius="6dp"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Busy"
+                android:textStyle="bold"
+                android:textColor="@color/darkred"
+                android:textSize="16sp"
+                android:visibility="visible" />
+
+
+            <ImageView
+                android:id="@+id/imgItem"
+                android:layout_width="35dp"
+                android:layout_below="@+id/txtStatus"
+                android:layout_height="35dp"
+
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_new_table_icon" />
+
+
+
+
+            <TextView
+                android:id="@+id/txtItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgItem"
+                android:fontFamily="@font/roboto_regular"
+                android:text="1"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+
+                android:textColor="@color/darkgray"
+                android:textSize="13sp" />
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
+
+
+
+

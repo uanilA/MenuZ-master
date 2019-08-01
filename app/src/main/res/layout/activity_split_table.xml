@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".ui.currentorder.SplitTableActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar_home" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/ll"
+        android:visibility="gone"
+        android:layout_marginTop="6dp"
+        android:layout_below="@+id/app_bar"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/check_all"
+            android:id="@+id/txtCheckall"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/uncheck_all"
+            android:id="@+id/txtUncheck"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/txtCheckall"
+            android:layout_toEndOf="@+id/txtCheckall"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="@string/uncheck_all"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="end"
+            android:id="@+id/txtItem"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/ll"
+        android:layout_marginTop="5dp"
+        android:layout_above="@+id/btnNext"
+
+        android:id="@+id/RecyclerView"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:textAllCaps="false"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_button_drawable"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Next"
+        android:textColor="@color/white"
+        tools:ignore="RtlHardcoded" />
+
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBarnew"
+        android:visibility="gone"
+
+        android:layout_height="wrap_content" />
+
+
+
+
+
+</RelativeLayout>

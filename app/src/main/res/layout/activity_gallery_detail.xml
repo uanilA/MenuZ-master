@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="4dp"
+    android:layout_height="match_parent"
+    tools:context=".ui.GalleryActivity">
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:background="@color/black"
+            android:orientation="vertical"
+
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/llHome"
+                android:layout_marginBottom="10dp"
+
+
+                android:background="@color/colorPrimary"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/home_active"
+                    android:tint="@color/white"
+                    android:layout_gravity="center"
+
+                    android:id="@+id/ivHome"
+                    android:layout_height="50dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Home"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/recycleMenu"
+
+                tools:listitem ="@layout/gallery_menu_adapter"
+
+
+
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/llHeader"
+                android:layout_height="wrap_content">
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginLeft="3dp"
+
+                    android:layout_height="81dp"
+                    android:layout_marginStart="3dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:padding="4dp"
+                        android:tint="@color/white"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/ivBack"
+                        app:srcCompat="@drawable/back_arrow"
+                        android:layout_height="30dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/title"
+                        android:id="@+id/tvitemTitle"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textAllCaps="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content" />
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:padding="4dp"
+                        android:tint="@color/white"
+                        android:id="@+id/ivForward"
+                        app:srcCompat="@drawable/ic_right_chevron"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true" />
+
+
+
+                </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".88"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp">
+
+
+                <android.support.v4.view.ViewPager
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:id="@+id/viewPager"
+                    tools:listitem ="@layout/gallery_item_adapter"
+                    android:layout_height="match_parent">
+
+                </android.support.v4.view.ViewPager>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="@color/black"
+        android:id="@+id/txtNodata"
+        android:text="No items found"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_height="wrap_content" />
+
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+
+
+
+</RelativeLayout>

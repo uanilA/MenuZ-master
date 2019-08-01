@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    tools:openDrawer="start"
+    android:background="@color/white"
+    tools:context=".ui.Home.activity.HomeActivity">
+
+    <RelativeLayout
+        android:id="@+id/mainView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="4dp">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/app_bar"
+                    layout="@layout/app_bar_home"
+                    android:visibility="visible" />
+
+                <android.support.v4.widget.DrawerLayout
+                    android:layout_width="match_parent"
+                    android:layout_above="@+id/llAdd"
+                    android:layout_gravity="start"
+                    android:id="@+id/drawer"
+                    tools:openDrawer="end"
+                    android:layout_below="@+id/app_bar"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/cvToolbar">
+
+                        <include
+                            android:id="@+id/app_bar_new"
+                            layout="@layout/toolbar_cart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible" />
+
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:id="@+id/view"
+                            android:layout_below="@+id/app_bar_new"
+                            android:background="@color/darkgray"
+                            android:layout_height="2dp"/>
+
+
+                        <TextView
+                            android:id="@+id/tableOrderCount"
+                            android:layout_width="match_parent"
+                            android:layout_below="@+id/view"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center"
+                            android:layout_margin="3dp"
+                            android:text="@string/total"
+                            android:textColor="@color/black"
+                            android:textSize="12sp">
+
+
+                        </TextView>
+
+                        <FrameLayout
+                            android:layout_below="@+id/tableOrderCount"
+                            android:id="@+id/frame"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </RelativeLayout>
+
+                    <android.support.design.widget.NavigationView
+                        android:id="@+id/navigation_view"
+                        android:layout_width="280dp"
+                        android:layout_margin="4dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white">
+
+                            <include
+                                android:id="@+id/header"
+                                layout="@layout/nav_header_cart" />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recyclerMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_below="@+id/header">
+
+                            </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+
+                        </RelativeLayout>
+
+                    </android.support.design.widget.NavigationView>
+
+
+                </android.support.v4.widget.DrawerLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/white"
+                    android:id="@+id/llAdd"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+
+                        android:id="@+id/llPrint"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="3dp"
+                            app:srcCompat="@drawable/ic_printer"
+                            android:layout_marginStart="3dp"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5sp"
+                            android:text="@string/print"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="5sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="4dp"
+                        android:id="@+id/llAddMore"
+
+                        android:layout_weight="2"
+                        android:background="@color/black"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_add_more_item" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/add_more_items_new"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llDone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="4"
+                        android:background="@color/colorPrimary"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/done"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="5dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:tint="@color/white"
+                            app:srcCompat="@drawable/ic_check_square"
+                            android:layout_marginStart="2dp"
+                            tools:ignore="ContentDescription" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:visibility="gone"
+        android:id="@+id/lyCoordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+
+</RelativeLayout>

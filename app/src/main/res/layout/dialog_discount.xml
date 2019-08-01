@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/llHeader"
+        android:background="@color/colorPrimary"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Discount on items"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="18sp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_height="30dp"
+            android:padding="4dp"
+            android:id="@+id/ImgClose"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_close"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/llHeader"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/llDiscountn"
+            android:layout_gravity="center"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="35sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:text="0%"
+                android:id="@+id/txtPercent"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="2dp"
+                android:background="@color/graynew"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="35sp"
+                android:textColor="@color/darkgraynew"
+                android:text="0"
+                android:id="@+id/txtNumber"
+                android:inputType="number"
+                android:ellipsize="end"
+                android:layout_marginLeft="14dp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp" />
+
+        </LinearLayout>
+
+
+
+        <EditText
+            android:layout_width="240dp"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:id="@+id/edAmount"
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:background="@drawable/bg_edt"
+            android:layout_height="50dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/darkgraynew"
+                android:text="Swift between percent to amount"
+                android:inputType="number"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_height="wrap_content" />
+
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:id="@+id/switchButton"
+                android:checked="true"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="90dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:textAllCaps="false"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_button_drawable"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Done"
+            android:textColor="@color/white"
+            />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

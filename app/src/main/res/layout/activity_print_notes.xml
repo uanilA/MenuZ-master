@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".ui.currentorder.activity.PrintNotesActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar_home"
+        android:visibility="visible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/txtRemarks"
+        android:text="Remarks"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="14sp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_below="@+id/txtRemarks"
+        android:layout_marginLeft="10dp"
+        android:gravity="start"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:id="@+id/edRemark"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="14sp"
+
+        android:hint="Write Remark"
+
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edt"
+        android:layout_height="200dp" />
+
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/edRemark"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_button_drawable"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/done"
+        android:textColor="@color/white"
+        tools:ignore="RtlHardcoded" />
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

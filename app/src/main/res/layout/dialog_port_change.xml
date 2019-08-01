@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:text="@string/ip_port_setting"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:weightSum="1"
+        android:layout_marginLeft="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="@string/ip_server"
+            android:layout_margin="5dp"
+            android:id="@+id/txtIp"
+            android:layout_weight=".30"
+            android:textSize="16sp"
+            android:textColor="@color/graynew"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight=".70"
+            android:digits=".........0123456789"
+            android:hint="@string/enter_ip"
+
+            android:textColorHint="@color/graynew"
+            android:inputType="numberDecimal"
+            android:imeOptions="actionDone"
+            android:id="@+id/edIp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
+            android:background="@drawable/bg_edt"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:weightSum="1"
+        android:layout_marginLeft="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="@string/port_number_n"
+            android:layout_margin="5dp"
+            android:layout_weight=".30"
+            android:id="@+id/txtPort"
+            android:textSize="16sp"
+            android:textColor="@color/graynew"
+            android:layout_height="wrap_content" />
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
+            android:layout_weight=".70"
+            android:hint="@string/enter_port_number"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            android:id="@+id/edPortNu"
+            android:textColor="@color/black"
+            android:textColorHint="@color/graynew"
+
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
+            android:background="@drawable/bg_edt"
+            android:layout_height="wrap_content"
+       />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/btn_placeholder_circle"
+            android:layout_marginRight="20dp"
+            android:text="@string/cancel"
+            android:gravity="center"
+            android:id="@+id/btnCancel"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:layout_marginEnd="20dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/btn_placeholder_circle"
+            android:layout_marginRight="40dp"
+            android:text="@string/ok"
+            android:gravity="center"
+            android:id="@+id/btnOk"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:layout_marginEnd="20dp"
+            android:layout_height="30dp" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+
+
+
+
+</LinearLayout>

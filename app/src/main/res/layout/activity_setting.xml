@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.setting.SettingActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar_home" />
+
+
+    <TextView
+        android:id="@+id/txtGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/enable_guest_for_item"
+        android:textSize="16sp" />
+
+    <Switch
+        android:id="@+id/switchGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:id="@+id/txtCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtGuest"
+
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/enable_course_for_item"
+        android:textSize="16sp" />
+
+    <Switch
+        android:id="@+id/switchCourse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switchGuest"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/llPortSetting"
+        android:layout_below="@+id/switchCourse"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Port Setting"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="30dp"
+                app:srcCompat="@drawable/ic_right_chevron"
+                android:layout_marginRight="10dp"
+                android:tint="@color/darkgray"
+                android:layout_alignParentEnd="true"
+
+                android:layout_gravity="end"
+                android:layout_marginTop="4dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:layout_alignParentRight="true" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/rlParent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.menuz.ui.Order.activity.SingleBreakFastActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar_home" />
+
+    <LinearLayout
+        android:id="@+id/llTabs"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/app_bar"
+        android:background="@drawable/button_border"
+        android:layout_margin="5dp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtAddon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:background="@drawable/button_active_addon"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="Add ons"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txtPrep"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="Preprations"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rlContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llTabs"
+        android:background="@color/white">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/tabsUper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:visibility="gone">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+            app:tabTextColor="@color/black" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabsUper"
+        android:layout_marginTop="10dp"
+
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    <LinearLayout
+        android:id="@+id/llCartBtn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <RelativeLayout
+            android:id="@+id/rlCancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/darkred">
+
+            <TextView
+                android:id="@+id/txtCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rlAddCart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/txtAddCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="@string/add_to_cart"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <!--   <android.support.v7.widget.CardView
+           android:id="@+id/counting_view"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true"
+           app:cardCornerRadius="0dp"
+           app:cardElevation="4dp">
+
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:background="@color/black"
+                   android:orientation="horizontal"
+                   android:weightSum="2">
+
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_weight="1"
+                       android:background="@color/white">
+
+                       <TextView
+                           android:id="@+id/tv_price"
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:fontFamily="@font/roboto_regular"
+                           android:gravity="start|center"
+                           android:paddingLeft="10dp"
+                           android:paddingStart="10dp"
+                           android:text="$10.00"
+                           android:textColor="#123"
+                           android:textSize="16sp" />
+
+
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_gravity="end"
+                       android:layout_weight="1"
+                       android:background="@color/white"
+                       android:gravity="center|end"
+                       android:orientation="horizontal"
+                       android:paddingRight="10dp">
+
+                       <LinearLayout
+                           android:id="@+id/iv_minus"
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:background="@drawable/circuler_border">
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_gravity="center"
+                               android:layout_margin="5dp"
+                               android:fontFamily="@font/roboto_regular"
+                               android:gravity="center"
+                               android:text="-"
+                               android:textColor="@color/black"
+                               android:textSize="16dp" />
+
+                       </LinearLayout>
+
+
+                       <TextView
+                           android:id="@+id/tv_quntity"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_margin="5dp"
+                           android:fontFamily="@font/roboto_regular"
+                           android:text="1"
+                           android:textColor="@color/colorPrimary"
+                           android:textSize="16dp" />
+
+                       <LinearLayout
+                           android:id="@+id/iv_plus"
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:background="@drawable/circuler_border">
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:layout_gravity="center"
+                               android:layout_margin="5dp"
+                               android:fontFamily="@font/roboto_regular"
+                               android:gravity="center"
+                               android:text="+"
+                               android:textColor="@color/black"
+                               android:textSize="16dp" />
+
+                       </LinearLayout>
+
+                   </LinearLayout>
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+
+                   android:background="@color/colorPrimary"
+                   android:orientation="vertical">
+
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="50dp">
+
+                       <TextView
+                           android:layout_width="140dp"
+                           android:layout_height="wrap_content"
+                           android:layout_centerInParent="true"
+                           android:fontFamily="@font/roboto_regular"
+                           android:gravity="center"
+                           android:text="Continue"
+                           android:textColor="@color/white"
+                           android:textSize="16dp" />
+
+
+                       <LinearLayout
+                           android:id="@+id/iv_newView"
+                           android:layout_width="30dp"
+                           android:layout_height="30dp"
+                           android:layout_alignParentRight="true"
+                           android:layout_centerInParent="true"
+                           android:layout_marginRight="10dp"
+                           android:background="@drawable/circuler_view"
+                           android:layout_alignParentEnd="true">
+
+                           <ImageView
+                               android:layout_width="match_parent"
+                               android:layout_height="match_parent"
+                               android:src="@drawable/back_arrow"
+                               android:tint="@color/colorPrimary" />
+
+                       </LinearLayout>
+
+                   </RelativeLayout>
+
+               </LinearLayout>
+           </LinearLayout>
+
+       </android.support.v7.widget.CardView>-->
+
+</RelativeLayout>

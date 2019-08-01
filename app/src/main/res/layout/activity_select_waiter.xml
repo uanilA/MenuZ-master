@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_bar_home"
+        android:id="@+id/app_bar"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/app_bar"
+        android:layout_above="@+id/view"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_zones"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/select_waiter_new"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:nestedScrollingEnabled="false"
+                    android:scrollbars="none"
+                    app:reverseLayout="true"
+                    tools:ignore="UnusedAttribute">
+
+
+                </android.support.v7.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view"
+        android:layout_above="@+id/llSelectGuest"
+        android:background="@color/darkgray" />
+
+    <LinearLayout
+        android:id="@+id/llSelectGuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/selectGuest"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/number_of_guests"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/rlGuest"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edt"
+                android:visibility="visible">
+
+                <EditText
+                    android:id="@+id/edNumberofguest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:focusable="true"
+                    android:hint="@string/enter_guest_new"
+                    android:textColorHint="@color/darkgray"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@null"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:inputType="number"
+                    android:textColor="@color/darkgray"
+                    tools:ignore="RtlHardcoded" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:id="@+id/rlPlus"
+                    android:background="@drawable/bg_circle"
+                    android:layout_height="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="+"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_centerInParent="true"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="0"
+                    android:id="@+id/txtGuest"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:id="@+id/rlMinus"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/bg_circle"
+                    android:layout_height="30dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_centerInParent="true"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+
+
+            android:visibility="gone">
+
+
+
+        </android.support.v7.widget.RecyclerView>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button_drawable"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/next"
+                android:textColor="@color/white"
+                tools:ignore="RtlHardcoded" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+</RelativeLayout>
+
+
+
+
+
+
