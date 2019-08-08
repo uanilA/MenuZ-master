@@ -3019,7 +3019,7 @@ public class SwipePaymentActivity extends PreferenceActivity {
                             expiryDate = mTrack2Data.getExpirationDate();
                             System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&"+mTrack2Data.getPrimaryAccountNumber());
 
-                            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^"+mTrack2Data.getExpirationDate());
+                            System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^"+cardId);
 
                         }
 
@@ -5498,9 +5498,17 @@ public class SwipePaymentActivity extends PreferenceActivity {
                 }
                 JSONObject jObjectType = new JSONObject();
                 try {
-                    jObjectType.put("cardid", cardNumber);
+                    /*jObjectType.put("cardid", cardNumber);*/
+                    jObjectType.put("cardid", cardId);
                     jObjectType.put("expdate", expiryDate);
                     jObjectType.put("ident", "");
+
+                    jObjectType.put("restId", cibus_restaurent_id);
+                    jObjectType.put("posId", cibus_post_id);
+                    jObjectType.put("function", "charge");
+                    jObjectType.put("refId", "");
+                    jObjectType.put("price", edAmount.getText().toString());
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -5562,11 +5570,12 @@ public class SwipePaymentActivity extends PreferenceActivity {
                             JSONObject jsonObjectOrder = jsonObject.getJSONObject("orders");
                             String orderID = jsonObjectOrder.getString("orderID");
                             MenuZ.getInstance().setOrderId(orderID);
-                            new Thread(() -> {
+                            Toast.makeText(SwipePaymentActivity.this, "Cibus payment Successfully.", Toast.LENGTH_SHORT).show();
+                          /*  new Thread(() -> {
                                 getDataManager().updateOrderAmt(txtGrandtotal, orderID);
                                 PayMethodsModel payMethodsModels = getDataManager().loadSinglePayment(orderID);
                                 newOrderModel = getDataManager().loadDataOnOrderId(orderID);
-                                if (payMethodsModels != null)
+                                 *//*if (payMethodsModels != null)
                                     handler.post(() -> {
                                         PaymentModel payMethodsModel = new PaymentModel();
                                         payMethodsModel.setRestId(cibus_restaurent_id);
@@ -5588,8 +5597,8 @@ public class SwipePaymentActivity extends PreferenceActivity {
                                             // TODO Auto-generated catch block
                                             e.printStackTrace();
                                         }
-                                    });
-                            }).start();
+                                    });*//*
+                            }).start();*/
                         } else {
                             String errorMessage = jsonObject.getString("errorMessage");
                             Toast.makeText(SwipePaymentActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
@@ -5633,8 +5642,7 @@ public class SwipePaymentActivity extends PreferenceActivity {
                             Toast.makeText(SwipePaymentActivity.this, "Cibus payment Successfully.", Toast.LENGTH_SHORT).show();
                         } else {
                             String errorMessage = jsonObject.getString("errorMessage");
-                            System.out.println("*********************" + errorMessage
-                            );
+                            System.out.println("*********************" + errorMessage);
                             Toast.makeText(SwipePaymentActivity.this, "" + errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -5651,5 +5659,4 @@ public class SwipePaymentActivity extends PreferenceActivity {
                 .setProgress(true))
                 .execute("");
     }
-
 }

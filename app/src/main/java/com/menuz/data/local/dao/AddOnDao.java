@@ -6,9 +6,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import com.menuz.data.model.db.AddOnModel;
-import com.menuz.data.model.db.EmployeeModel;
-import com.menuz.data.model.db.ItemModel;
-import com.menuz.data.model.db.OrderAddOnModel;
+
 
 import java.util.List;
 

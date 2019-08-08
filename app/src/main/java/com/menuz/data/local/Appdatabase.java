@@ -4,7 +4,6 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
-
 import com.menuz.data.local.dao.AddOnChildDao;
 import com.menuz.data.local.dao.AddOnDao;
 import com.menuz.data.local.dao.AddonPreprationDao;
@@ -58,7 +57,7 @@ import com.menuz.data.model.db.Zonemodel;
 
 
 @Database(entities = {TableModel.class, Zonemodel.class, EmployeeModel.class, MenuModel.class, ItemModel.class, PreparationModel.class, AddOnModel.class, AdddonChildModel.class, PrefixModel.class, OrderTableModel.class, OrderZoneModel.class, OrderEmployeeModel.class, OrderMenuModel.class, OrderItemModel.class, OrderPreparationModel.class, OrderAddOnModel.class, OrderAddOnChild.class, OrderPreparationAddonModel.class, NewOrderModel.class, PaymentModel.class, PriceModel.class, PricevaluesModel.class,AddonPreprationModel.class,ItemPreprationModel.class,PayMethodsModel.class},
-        version = 5, exportSchema = false)
+        version = 10, exportSchema = false)
 abstract  class Appdatabase extends RoomDatabase {
     private static Appdatabase mAppDatabase;
 
@@ -68,14 +67,11 @@ abstract  class Appdatabase extends RoomDatabase {
                     .fallbackToDestructiveMigration()
                     .build();
         }
-
         return mAppDatabase;
     }
 
 
     abstract TableDao tableDao();
-
-
 
     abstract ZoneDao zoneDao();
 

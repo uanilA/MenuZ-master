@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -58,6 +59,7 @@ public class SelectWaiterFragment extends BaseFragment implements SelectwaitorAd
     private RecyclerView recycler;
     private EditText edNumberofguest;
     private String nuogGuest = "";
+    private long mLastClickTime = 0;
 
 
     public static SelectWaiterFragment newInstance(TableModel tableModel, Zonemodel zonemodel, NewOrderModel newOrderModel) {
@@ -203,8 +205,6 @@ public class SelectWaiterFragment extends BaseFragment implements SelectwaitorAd
 
     @SuppressLint("StaticFieldLeak")
     public void addItem() {
-
-
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -250,6 +250,11 @@ public class SelectWaiterFragment extends BaseFragment implements SelectwaitorAd
 
     @Override
     public void onClick(View v) {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
         switch (v.getId()) {
             case R.id.btnNext:
 

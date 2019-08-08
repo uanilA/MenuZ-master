@@ -35,7 +35,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText edEmail;
     private EditText edPassword;
     private Session session;
-
     private ProgressBar progress;
     private String userselectedlanguage;
 

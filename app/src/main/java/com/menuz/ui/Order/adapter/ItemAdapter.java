@@ -50,13 +50,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private Context context;
     private int count;
     private long mLastClickTime = 0;
+    private String groupName = "";
     private Handler handler=new Handler(Looper.getMainLooper());
 
 
-    public ItemAdapter(Context context, List<ItemModel> shiftModalArrayList, OnItemClick onItemClick) {
+    public ItemAdapter(String groupName ,Context context, List<ItemModel> shiftModalArrayList, OnItemClick onItemClick) {
         this.shiftModalArrayList = shiftModalArrayList;
         this.context = context;
         this.onItemClick = onItemClick;
+        this.groupName = groupName;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -74,6 +76,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         ItemModel itemModel = shiftModalArrayList.get(position);
         holder.itemName.setText(itemModel.getItemName());
         holder.itemPrice.setText(itemModel.getItemPrice() + ".00");
+        holder.itemDes.setText(groupName);
         String image="http://82.81.11.210:12986/datasnap/rest/tservermethods1/downloadfile/c:%2fimagesAPI%2f/"+itemModel.getItemImage();
         try {
             System.out.println(image);
@@ -153,6 +156,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView itemName;
         private TextView itemPrice;
+        private TextView itemDes;
         private ImageView check_box,imgItem;
         private CardView cardview;
         private TextView tv_quntity;
@@ -174,6 +178,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             cardview = itemView.findViewById(R.id.cardview);
             llCount = itemView.findViewById(R.id.llCount);
             llMinus = itemView.findViewById(R.id.llMinus);
+            itemDes = itemView.findViewById(R.id.itemDes);
             cardview.setOnClickListener(this);
             llPlus.setOnClickListener(this);
             llMinus.setOnClickListener(this);

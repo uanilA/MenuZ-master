@@ -49,27 +49,27 @@ public class AddOnAdapter  extends RecyclerView.Adapter<AddOnAdapter.ViewHolder>
         AddOnModel addOnModel = addOnList.get(position);
         holder.addon_item_Name.setText(addOnModel.getAddonsGroupName());
 
-         if (addOnModel.isSelect)  {
-             if (navigation.equals("neworder")){
-                 holder.addon_iv_cancle.setVisibility(View.VISIBLE);
-                 holder.addon_item_prefixCount.setVisibility(View.GONE);
-                 holder.pre_card_view.setBackground(context.getResources().getDrawable(R.drawable.addon_select_view));
+        if (addOnModel.isSelect)  {
+            if (navigation.equals("neworder")){
+                holder.addon_iv_cancle.setVisibility(View.VISIBLE);
+                holder.addon_item_prefixCount.setVisibility(View.GONE);
+                holder.pre_card_view.setBackground(context.getResources().getDrawable(R.drawable.addon_select_view));
 
-             }else {
-                 holder.addon_iv_cancle.setVisibility(View.GONE);
-                 holder.addon_item_prefixCount.setVisibility(View.GONE);
-                 holder.pre_card_view.setBackground(context.getResources().getDrawable(R.drawable.addon_select_view));
+            }else {
+                holder.addon_iv_cancle.setVisibility(View.GONE);
+                holder.addon_item_prefixCount.setVisibility(View.GONE);
+                holder.pre_card_view.setBackground(context.getResources().getDrawable(R.drawable.addon_select_view));
 
-             }
-         }else {
-             holder.addon_iv_cancle.setVisibility(View.GONE);
-             holder.pre_card_view.setBackground(context.getResources().getDrawable(R.drawable.addon_view));
-             holder.addon_item_prefixCount.setVisibility(View.VISIBLE);
-         }
+            }
+        }else {
+            holder.addon_iv_cancle.setVisibility(View.GONE);
+            holder.pre_card_view.setBackground(context.getResources().getDrawable(R.drawable.addon_view));
+            holder.addon_item_prefixCount.setVisibility(View.VISIBLE);
+        }
 
         holder.addon_item_limit.setVisibility(View.GONE);
         if (addOnModel.getAddonsGroupIsMandatory().equals("0")){
-         holder.rlCircle.setBackground(context.getResources().getDrawable(R.drawable.circular_blue));
+            holder.rlCircle.setBackground(context.getResources().getDrawable(R.drawable.circular_blue));
             holder.addon_item_prefixCount.setVisibility(View.VISIBLE);
             holder.addon_item_prefixCount.setText(addOnModel.getAddonsGroupMax());
         }else {
@@ -78,6 +78,66 @@ public class AddOnAdapter  extends RecyclerView.Adapter<AddOnAdapter.ViewHolder>
             holder.addon_item_prefixCount.setText(addOnModel.getAddonsGroupMax());
 
         }
+
+        holder.pre_card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.getAdapterPosition() !=-1){
+
+                    if (navigation.equals("neworder")){
+                        AddOnModel orderAddOnModel = addOnList.get(holder.getAdapterPosition());
+                      //  orderAddOnModel.setAddonsGroupId(orderAddOnModel.getAddonsGroupId());
+                        orderAddOnModel.isSelect = true;
+                        addOnList.set(holder.getAdapterPosition(),orderAddOnModel);
+                        onItemClick.position(holder.getAdapterPosition());
+                        // new Thread(() -> getDataManager().updateAddonsIsSelect(true,orderAddOnModel.getAddonsGroupPriId(),orderAddOnModel.getAddonsGroupId())).start();
+                        onItemClick.isSelected("yes");
+
+                        new Thread(() -> {
+                            getDataManager().updateSelectedAddonGroupId(orderAddOnModel.getAddonsGroupId());
+                        }).start();
+                        notifyDataSetChanged();
+                    }else {
+                        AddOnModel orderAddOnModel = addOnList.get(holder.getAdapterPosition());
+                        for (int i = 0; i < addOnList.size(); i++) {
+                            addOnList.get(i).isSelect = false;
+                        }
+                        orderAddOnModel.isSelect = true;
+                        addOnList.set(holder.getAdapterPosition(),orderAddOnModel);
+                        onItemClick.position(holder.getAdapterPosition());
+                        new Thread(() -> {
+                            getDataManager().updateSelectedAddonGroupId(orderAddOnModel.getAddonsGroupId());
+                        }).start();
+                        notifyDataSetChanged();
+                    }
+                }
+
+            }
+        });
+        holder.addon_iv_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position!=-1){
+                 //   AddOnModel addOnModel = addOnList.get(position);
+                    if (!addOnModel.isSyncSelect()){
+                        addOnModel.isSelect = false;
+                        new Thread(() -> {
+                            // newOrderModel=getDataManager().geloadOrderId();
+                            getDataManager().updateAddonPrepration(false,addOnModel.getAddonsGroupId(),addOnModel.getOrderId(),addOnModel.getAddOnItemID());
+                            getDataManager().updateAddonGroup(false, addOnModel.getAddonsGroupId(), MenuZ.getInstance().getOrderId(), addOnModel.getAddOnItemID());
+                            getDataManager().updateAddons(false, addOnModel.getAddOnItemID(), addOnModel.getAddonsGroupId(), MenuZ.getInstance().getOrderId());
+                        }).start();
+                        onItemClick.cancel(position);
+                        notifyDataSetChanged();
+                    }else {
+                        onItemClick.cancel(position);
+
+                    }
+
+
+                }
+            }
+        });
     }
 
     @Override
@@ -93,7 +153,7 @@ public class AddOnAdapter  extends RecyclerView.Adapter<AddOnAdapter.ViewHolder>
         void isSelected(String isSelected);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder{
         private TextView addon_item_Name;
         private RelativeLayout addon_main_view;
         private RelativeLayout pre_card_view;
@@ -111,23 +171,27 @@ public class AddOnAdapter  extends RecyclerView.Adapter<AddOnAdapter.ViewHolder>
             addon_item_prefixCount = itemView.findViewById(R.id.addon_item_prefixCount);
             pre_card_view = itemView.findViewById(R.id.pre_card_view);
             addon_item_limit = itemView.findViewById(R.id.addon_item_prefix);
-            addon_main_view.setOnClickListener(this);
-            addon_iv_cancle.setOnClickListener(this);
-            pre_card_view.setOnClickListener(this);
+          //  addon_main_view.setOnClickListener(this);
+        //    addon_iv_cancle.setOnClickListener(this);
+          //  pre_card_view.setOnClickListener(this);
         }
 
-        @Override
+       /* @Override
         public void onClick(View view) {
 
             switch (view.getId()){
 
                 case R.id.pre_card_view:
-                    if (getAdapterPosition()!=-1){
+                    if (getAdapterPosition()!= -1){
+                        new Thread(() -> {
+                            getDataManager().updateSelectedAddonGroupId(addOnList.get(getAdapterPosition()).getAddOnItemID());
+                        }).start();
                         if (navigation.equals("neworder")){
                             AddOnModel orderAddOnModel = addOnList.get(getAdapterPosition());
                             orderAddOnModel.isSelect = true;
+                            addOnList.set(getAdapterPosition(),orderAddOnModel);
                             onItemClick.position(getAdapterPosition());
-                           // new Thread(() -> getDataManager().updateAddonsIsSelect(true,orderAddOnModel.getAddonsGroupPriId(),orderAddOnModel.getAddonsGroupId())).start();
+                            // new Thread(() -> getDataManager().updateAddonsIsSelect(true,orderAddOnModel.getAddonsGroupPriId(),orderAddOnModel.getAddonsGroupId())).start();
                             onItemClick.isSelected("yes");
                             notifyDataSetChanged();
                         }else {
@@ -136,13 +200,11 @@ public class AddOnAdapter  extends RecyclerView.Adapter<AddOnAdapter.ViewHolder>
                                 addOnList.get(i).isSelect = false;
                             }
                             orderAddOnModel.isSelect = true;
+                            addOnList.set(getAdapterPosition(),orderAddOnModel);
                             onItemClick.position(getAdapterPosition());
 
                             notifyDataSetChanged();
                         }
-
-
-
                     }
 
                     break;
@@ -172,7 +234,7 @@ public class AddOnAdapter  extends RecyclerView.Adapter<AddOnAdapter.ViewHolder>
                     }
 
             }
-        }
+        }*/
     }
 
     public void  setAddOnList(List<AddOnModel>addOnList){
@@ -180,4 +242,3 @@ public class AddOnAdapter  extends RecyclerView.Adapter<AddOnAdapter.ViewHolder>
         notifyDataSetChanged();
     }
 }
-

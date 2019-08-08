@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_margin="1dp"
-
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="2dp"
         app:cardElevation="3dp">
@@ -30,8 +29,7 @@
                 android:layout_width="80dp"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
-                android:id="@+id/imgItem"
-               />
+                android:id="@+id/imgItem" />
 
 
             <LinearLayout
@@ -45,9 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/roboto_regular"
-
                     android:text="Single BreakFast"
-
                     android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
                 <TextView
@@ -57,7 +53,6 @@
                     android:layout_marginLeft="10dp"
                     android:fontFamily="@font/roboto_regular"
                     android:text="Single BreakFast"
-
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 

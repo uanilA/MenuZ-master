@@ -22,7 +22,9 @@ import com.menuz.Demo.DemoSingleBreakFastActivity;
 import com.menuz.R;
 import com.menuz.application.MenuZ;
 import com.menuz.base.BaseFragment;
+import com.menuz.data.model.db.AdddonChildModel;
 import com.menuz.data.model.db.ItemModel;
+import com.menuz.data.model.db.NewOrderModel;
 import com.menuz.data.model.db.OrderAddOnChild;
 import com.menuz.data.model.db.OrderItemModel;
 import com.menuz.data.model.db.OrderPreparationAddonModel;
@@ -34,6 +36,9 @@ import com.menuz.ui.Order.adapter.NonScrollExpandableListView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.menuz.Demo.DemoAddonFragment.getTimestamp;
+import static com.menuz.application.MenuZ.getDataManager;
 
 public class CartDetailFragment extends BaseFragment {
 
@@ -63,6 +68,9 @@ public class CartDetailFragment extends BaseFragment {
         initView(view);
         return view;
     }
+
+
+
 
     public static CartDetailFragment newInstance(String orderId, ItemModel itemModel) {
         CartDetailFragment fragment = new CartDetailFragment();
@@ -376,6 +384,16 @@ public class CartDetailFragment extends BaseFragment {
         orderId = orderItemModel.getOrderId();
 
         btnDone.setOnClickListener((View v) -> {
+            OrderAddOnChild orderAddOnChild=new OrderAddOnChild();
+            new Thread(() -> {
+                for (int i = 0; i<listDataHeader.size(); i++){
+                    OrderItemModel orderItemModel1= listDataHeader.get(i);
+                    orderAddOnChild.setItemPrimaryKey(orderItemModel1.getItemPrimaryKey());
+                    orderAddOnChild.setAddonId(orderItemModel1.getItemId());
+                    getDataManager().update(orderAddOnChild);
+                }
+            }).start();
+
             Intent intent = new Intent(mContext, DemoSingleBreakFastActivity.class);
             intent.putExtra("itemID", orderItemModel.getItemId());
             intent.putExtra("itemName", orderItemModel.getItemName());

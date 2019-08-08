@@ -84,7 +84,6 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
     private String employeename="";
     private String isUpdated="";
     private String navigation="";
-
     private TextView cartCountTxt;
     private Handler handler = new Handler(Looper.getMainLooper());
 
@@ -97,7 +96,6 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
         Session session = new Session(NewOrderActivity.this);
         guestStatus = session.getGuest();
         courseStatus = session.getCourse();
-
         Intent intent = getIntent();
         if (intent != null) {
             OrderId = intent.getStringExtra("orderId");
@@ -106,13 +104,9 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
             employeename = intent.getStringExtra("employeename");
             nuofguest = intent.getStringExtra("nuofguest");
             isUpdated = intent.getStringExtra("isUpdated");
-
-
         }
         setContentView(R.layout.activity_new_order);
         inItView();
-
-
     }
 
     @SuppressLint({"StaticFieldLeak", "SetTextI18n"})
@@ -144,7 +138,6 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
         cartCountTxt = findViewById(R.id.cartCountTxt);
         TextView txtQuantity = findViewById(R.id.txtQuantity);
         txtQuantity.setVisibility(View.GONE);
-
         if (!navigation.equals("neworder")) {
             tvHeaderTitle.setText("Menu");
         }
@@ -154,13 +147,10 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
                 if (!orderItemModel1.getCountPrice().equals("")){
                     totalcost += Integer.parseInt((orderItemModel1.getCountPrice()));
                 }
-
-
             }
             if (navigation.equals("neworder")){
                 int finalTotalcost = totalcost;
                 handler.post(() -> cartCountTxt.setText("" + finalTotalcost));
-
             }else {
                 handler.post(() -> {
                     llCount.setVisibility(View.GONE);
@@ -173,7 +163,6 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
             }
 
         }).start();
-
         tv_quntity = findViewById(R.id.tv_quntity);
         tv_quntity.setVisibility(View.VISIBLE);
         tvHeaderTitle.setTextSize(16);
@@ -187,21 +176,19 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void updateMenuandItem() {
-
         new Thread(() -> {
             menuModelArrayList = getDataManager().getallMenu();
            // Collections.sort(menuModelArrayList, (o1, o2) -> o2.getGroupName().compareToIgnoreCase(o1.getGroupName()));
-
-
             handler.post(() -> {
                 if (menuModelArrayList.size()>0){
                     menuModelArrayList.get(0).isSelect = true;
                 }
-
                 menuRecycler.setAdapter(new MenuAdapter(menuModelArrayList, NewOrderActivity.this, (int position) -> new Thread(() -> {
                     ItemModelArraylist.clear();
                     menuModelArrayList = getDataManager().getallMenu();
                     String groupId = menuModelArrayList.get(position).getGroupId();
+                    String groupName = menuModelArrayList.get(position).getGroupName();
+
                     ItemModelArraylist = getDataManager().getallItem(groupId);
 
                     selectedItemList = getDataManager().getAllorderItem(MenuZ.getInstance().getOrderId());
@@ -212,11 +199,8 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
                         } else {
                             txtNodata.setVisibility(View.GONE);
                         }
-
                         //Collections.sort(ItemModelArraylist, (p1, p2) -> p1.getItemName().compareTo(p2.getItemName()));
-
-
-                        ItemAdapter itemAdapter = new ItemAdapter(NewOrderActivity.this, ItemModelArraylist, new ItemAdapter.OnItemClick() {
+                        ItemAdapter itemAdapter = new ItemAdapter(groupName,NewOrderActivity.this, ItemModelArraylist, new ItemAdapter.OnItemClick() {
                             @SuppressLint("SetTextI18n")
                             @Override
                             public void position(int position1) {
@@ -224,23 +208,18 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
                                 itemModel = ItemModelArraylist.get(position1);
                                 itemID = ItemModelArraylist.get(position1).getItemId();
                                 getData();
-
-
                             }
 
                             @Override
                             public void itemSelect() {
                             }
 
-
                             @Override
                             public void itemIncrease(int position1) {
-
                             }
 
                             @Override
                             public void itemDecrease(int position1) {
-
                             }
                         });
 
@@ -251,17 +230,18 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
                 }).start()));
             });
         }).start();
-
         new Thread(() -> {
             menuModelArrayList = getDataManager().getallMenu();
+            String groupName = null;
             if (menuModelArrayList.size()>0){
                 String groupId = menuModelArrayList.get(0).getGroupId();
+                groupName = menuModelArrayList.get(0).getGroupName();
                 ItemModelArraylist = getDataManager().getallItem(groupId);
-
             }
             Collections.sort(ItemModelArraylist, (p1, p2) -> p1.getItemName().compareTo(p2.getItemName()));
+            String finalGroupName = groupName;
             handler.post(() -> {
-                ItemAdapter itemAdapter = new ItemAdapter(NewOrderActivity.this, ItemModelArraylist, new ItemAdapter.OnItemClick() {
+                ItemAdapter itemAdapter = new ItemAdapter(finalGroupName,NewOrderActivity.this, ItemModelArraylist, new ItemAdapter.OnItemClick() {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void position(int position) {
@@ -275,7 +255,6 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
                     }
                     @Override
                     public void itemIncrease(int position) {
-
                     }
                     @Override
                     public void itemDecrease(int position) {
@@ -509,12 +488,13 @@ public class NewOrderActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void position(int position) {
         String groupId = menuModelArrayList.get(position).getGroupId();
+        String groupName = menuModelArrayList.get(position).getGroupName();
         new Thread(() -> {
             ItemModelArraylist = getDataManager().getallItem(groupId);
             Collections.sort(ItemModelArraylist, (p1, p2) -> p1.getItemName().compareTo(p2.getItemName()));
 
             handler.post(() -> {
-                ItemAdapter itemAdapter = new ItemAdapter(NewOrderActivity.this, ItemModelArraylist, new ItemAdapter.OnItemClick() {
+                ItemAdapter itemAdapter = new ItemAdapter(groupName,NewOrderActivity.this, ItemModelArraylist, new ItemAdapter.OnItemClick() {
                     @Override
                     public void position(int position1) {
                         itemModel = ItemModelArraylist.get(position1);

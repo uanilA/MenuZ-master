@@ -67,7 +67,7 @@ public class GalleryDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void setAdapter(RecyclerView recycleMenu){
-        GalleryMenuAdapter galleryMenuAdapter = new GalleryMenuAdapter(galleryBeanList, this);
+        GalleryMenuAdapter galleryMenuAdapter = new GalleryMenuAdapter(GalleryDetailActivity.this,galleryBeanList, this);
         recycleMenu.setLayoutManager(new LinearLayoutManager(GalleryDetailActivity.this));
         recycleMenu.setAdapter(galleryMenuAdapter);
         galleryBeanList.get(position).setSelect(true);

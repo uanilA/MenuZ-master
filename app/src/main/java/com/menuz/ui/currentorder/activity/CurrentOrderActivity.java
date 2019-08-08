@@ -170,11 +170,7 @@ public class CurrentOrderActivity extends AppCompatActivity implements View.OnCl
                         getDataManager().insertOrderPrearation(orderPreparationModel);
                     }
                 }
-
             }
-
-
-
 
             for (CurrentOrderModel.ResultBean.OrdersBean.ItemsBean.AddonsBean addonsBean : itemBea.getAddons()) {
                 AdddonChildModel adddonChildModel = getDataManager().getDetail(addonsBean.getAddonID());

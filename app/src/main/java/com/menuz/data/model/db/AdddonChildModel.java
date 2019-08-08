@@ -108,10 +108,20 @@ public class AdddonChildModel  {
     @ColumnInfo(name = "addOnItemIdchild")
     private String addOnItemIdchild;
 
+    @ColumnInfo(name = "addonSelectedGroupId")
+    private String addonSelectedGroupId;
 
     @NonNull
     public String getAddonId() {
         return addonId;
+    }
+
+    public String getAddonSelectedGroupId() {
+        return addonSelectedGroupId;
+    }
+
+    public void setAddonSelectedGroupId(String addonSelectedGroupId) {
+        this.addonSelectedGroupId = addonSelectedGroupId;
     }
 
     public void setAddonId(@NonNull String addonId) {
@@ -169,7 +179,7 @@ public class AdddonChildModel  {
     public  int itemImg;
     public  int itemImgActive;
     @ColumnInfo(name = "isSelect")
-    private boolean isSelect = false;
+    public boolean isSelect = false;
 
     public boolean isSelect() {
         return isSelect;
@@ -177,6 +187,18 @@ public class AdddonChildModel  {
 
     public void setSelect(boolean select) {
         isSelect = select;
+    }
+
+    @ColumnInfo(name = "mySelect")
+    private boolean mySelect = false;
+
+
+    public boolean isMySelect() {
+        return mySelect;
+    }
+
+    public void setMySelect(boolean mySelect) {
+        this.mySelect = mySelect;
     }
 
     public String itemName;

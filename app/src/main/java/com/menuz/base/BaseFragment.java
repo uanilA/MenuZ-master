@@ -17,7 +17,7 @@ public class BaseFragment extends Fragment {
     public static final String ARGS_INSTANCE = "com.mualab.org.user";
     protected Callback mFragmentNavigation;
     protected Context mContext;
-    private BaseActivity mActivity;
+    public BaseActivity mActivity;
 
     @Override
     public void onAttach(Context context) {

@@ -4,8 +4,10 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.menuz.data.model.db.AdddonChildModel;
+import com.menuz.data.model.db.OrderAddOnChild;
 
 import java.util.List;
 
@@ -40,8 +42,10 @@ public interface AddOnChildDao {
     @Query("UPDATE addonchild SET isSyncSelect=:isSyncSelect WHERE addonId=:addonId AND ItemIdAddon=:ItemIdAddon AND addOnItemIdchild=:addOnItemIdchild")
     void updateIsSync(boolean isSyncSelect,String addonId,String ItemIdAddon,String addOnItemIdchild);
 
+    @Query("UPDATE addonchild SET mySelect = :mySelect WHERE addonId =:addonId")
+    void updateMySelectionAddonChild(boolean mySelect,String addonId);
 
-
-
+    @Query("UPDATE addonchild SET addonSelectedGroupId = :addonSelectedGroupId")
+    void updateSelectedAddonGroupId(String addonSelectedGroupId);
 
 }

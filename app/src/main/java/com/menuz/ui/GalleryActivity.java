@@ -74,7 +74,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryMenuAda
         );
         swipeRefreshLayout.setOnRefreshListener(this::getGalleryData);
 
-        galleryMenuAdapter = new GalleryMenuAdapter(galleryBeanList, this);
+        galleryMenuAdapter = new GalleryMenuAdapter(GalleryActivity.this,galleryBeanList, this);
         recycleMenu.setLayoutManager(new LinearLayoutManager(GalleryActivity.this));
         recycleMenu.setAdapter(galleryMenuAdapter);
 
@@ -151,7 +151,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryMenuAda
                             itemsBeansTemp.add(itemsBean);
                         }
                     }
-                    galleryItemAdapter = new GalleryItemAdapter(itemsBeansTemp, GalleryActivity.this);
+                    galleryItemAdapter = new GalleryItemAdapter(GalleryActivity.this,itemsBeansTemp, GalleryActivity.this);
 
                     recyclerItem.setLayoutManager(new LinearLayoutManager(GalleryActivity.this));
                     recyclerItem.setAdapter(galleryItemAdapter);

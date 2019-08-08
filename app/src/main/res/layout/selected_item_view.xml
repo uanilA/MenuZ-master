@@ -55,7 +55,6 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:cardBackgroundColor="@color/white"
-
             app:cardElevation="5dp">
 
             <RelativeLayout

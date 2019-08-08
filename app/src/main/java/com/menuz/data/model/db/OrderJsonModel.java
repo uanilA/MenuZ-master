@@ -447,7 +447,9 @@ public class OrderJsonModel {
              * paymentIdentification :
              * paymentTerminalID :
              * paymentApproved :
+
              */
+
 
             private String paymentID;
             private String paymentPrice;

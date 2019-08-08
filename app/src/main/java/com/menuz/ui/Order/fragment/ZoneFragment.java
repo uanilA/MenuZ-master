@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcelable;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -86,6 +87,7 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
     private List<TableModel> getAlltableList = new ArrayList<>();
     private List<GetZoneAndTableModel.ResultBean.ZonesBean.TablesBean> tablesBeanArrayList = new ArrayList<>();
     private ProgressBar progressBar;
+    private long mLastClickTime = 0;
 
     public static ZoneFragment newInstance() {
         ZoneFragment fragment = new ZoneFragment();
@@ -118,7 +120,6 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
 
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -130,7 +131,6 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
         initView(view);
         getTableStatus(mContext);
         return view;
-
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -140,14 +140,17 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
         recyclerviewZone = view.findViewById(R.id.recyclerview);
         progressBar = view.findViewById(R.id.progressBar);
         recyclerviewSelectTable = view.findViewById(R.id.rlZone);
-
-
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
         switch (v.getId()) {
             case R.id.btnNext:
                 switch (from) {
@@ -160,11 +163,9 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
                                 jObjectType.put("orderid", orderId);
                                 jObjectType.put("destination", tableModel.getTableId());
                                 transferTable(jObjectType.toString().trim());
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                         } else {
                             showToast("Select Table");
                         }
@@ -186,7 +187,6 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
                         if (tableSelect.equals("yes")) {
 
                             JSONObject jObjectType = new JSONObject();
-
                             // put elements into the object as a key-value pair
                             try {
                                 jObjectType.put("source", tableId);
@@ -197,13 +197,10 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                         } else {
                             showToast("Select Table");
                         }
-
                         break;
-
 
                     default:
                         if (tableSelect.equals("yes")) {
@@ -232,24 +229,17 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
     public void position(int position) {
         String zoneId = zoneModelArrayList.get(position).getZoneId();
 
-
         new AsyncTask<Void, Void, Void>() {
-
             @Override
             protected Void doInBackground(Void... voids) {
                 tableModelArrayList = getDataManager().getalltable(zoneId);
-
                 return null;
             }
-
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-
                 tableAdapter.setItems(tableModelArrayList);
                 tableAdapter.notifyDataSetChanged();
-
-
             }
         }.execute();
 
@@ -267,7 +257,6 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
         new Thread(() -> {
             zoneModelArrayList = getDataManager().getallZone();
             handler.post(() -> updateZoneUi(zoneModelArrayList));
-
         }).start();
     }
 
@@ -393,8 +382,6 @@ public class ZoneFragment extends BaseFragment implements View.OnClickListener, 
             @Override
             public void onResponse(String response, String apiName) {
                 try {
-
-
                     JSONObject js = new JSONObject(response);
                     JSONArray jsonArray = js.getJSONArray("result");
                     for (int i = 0; i < jsonArray.length(); i++) {

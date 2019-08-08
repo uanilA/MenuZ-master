@@ -182,6 +182,8 @@ public interface DbHelper {
 
     void updateOrderinOrderEmployee(String OrderId,String NuofGuest);
 
+    void updateMySelectionAddonChild(boolean mySelect,String addonId);
+
     void deleteByOrderId(String OrderId);
 
     void updatetableandZone(String OrderId,String zoneName,String zoneId,String tableId);
@@ -383,6 +385,12 @@ public interface DbHelper {
 
 
     void updatePrepration(String OrderId,String preparationId);
+
+    void updateSelectedAddonGroupId(String selectedAddonGroupId);
+
+    void update(OrderAddOnChild orderAddOnChild);
+
+
 
 
 

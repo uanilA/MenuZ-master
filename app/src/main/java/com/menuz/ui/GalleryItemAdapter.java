@@ -1,5 +1,6 @@
 package com.menuz.ui;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.menuz.R;
 import com.squareup.picasso.Picasso;
 
@@ -18,10 +20,12 @@ public class GalleryItemAdapter extends RecyclerView.Adapter<GalleryItemAdapter.
 
     private List<GalleryModel.ResultBean.GalleryBean.ItemsBean>itemBean;
     private galleyListener galleyListener;
+    private Context mContext;
 
-    GalleryItemAdapter(List<GalleryModel.ResultBean.GalleryBean.ItemsBean> itemBean, galleyListener galleyListener){
+    GalleryItemAdapter(Context mContext,List<GalleryModel.ResultBean.GalleryBean.ItemsBean> itemBean, galleyListener galleyListener){
         this.itemBean=itemBean;
         this.galleyListener=galleyListener;
+        this.mContext = mContext;
 
     }
     public interface galleyListener{
@@ -39,7 +43,8 @@ public class GalleryItemAdapter extends RecyclerView.Adapter<GalleryItemAdapter.
         GalleryModel.ResultBean.GalleryBean.ItemsBean itemsBean=itemBean.get(position);
         holder.itemName.setText(itemsBean.getItemName());
         String image="http://82.81.11.210:12986/datasnap/rest/tservermethods1/downloadfile/c:%2fimagesAPI%2f/"+itemsBean.getItemImage();
-        Picasso.get().load(image).placeholder(R.drawable.img_placeholder).error(R.drawable.img_placeholder).into(holder.ivItemImg);
+        Glide.with(mContext).load(image).error(R.drawable.img_placeholder).into(holder.ivItemImg);
+        /*Picasso.get().load(image).placeholder(R.drawable.img_placeholder).error(R.drawable.img_placeholder).into(holder.ivItemImg);*/
         Double price=Double.valueOf(itemsBean.getItemPrice());
         holder.txtPrice.setText(String.format("%s", price));
 

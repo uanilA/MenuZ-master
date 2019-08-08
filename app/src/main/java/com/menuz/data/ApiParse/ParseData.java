@@ -231,7 +231,6 @@ public class ParseData {
                         }
                     }
                 }
-
                 JSONArray jsonArrayPrefix = resultjson.getJSONArray("prefixes");
                 for (int j = 0; j < jsonArrayPrefix.length(); j++) {
                     JSONObject jsonObjectPrefix = jsonArrayPrefix.getJSONObject(j);

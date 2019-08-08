@@ -39,7 +39,6 @@ public class AppDataManager implements DataManager {
 
     private AppDataManager(Context context) {
         mDbHelper = AppDbHelper.getDbInstance(context);
-        //Gson mGson = new GsonBuilder().create();
     }
 
     public synchronized static AppDataManager getInstance(Context context) {
@@ -424,6 +423,11 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public void updateMySelectionAddonChild(boolean mySelect, String addonId) {
+        mDbHelper.updateMySelectionAddonChild(mySelect,addonId);
+    }
+
+    @Override
     public void deleteByOrderId(String OrderId) {
         mDbHelper.deleteByOrderId(OrderId);
     }
@@ -597,6 +601,18 @@ public class AppDataManager implements DataManager {
     @Override
     public void updatePrepration(String OrderId, String preparationId) {
         mDbHelper.updatePrepration(OrderId,preparationId);
+    }
+
+    @Override
+    public void updateSelectedAddonGroupId(String selectedAddonGroupId) {
+         mDbHelper.updateSelectedAddonGroupId(selectedAddonGroupId);
+    }
+
+
+
+    @Override
+    public void update(OrderAddOnChild orderAddOnChild) {
+        mDbHelper.update(orderAddOnChild);
     }
 
 

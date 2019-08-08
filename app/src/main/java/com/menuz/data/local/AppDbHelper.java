@@ -426,6 +426,11 @@ public final class AppDbHelper  implements DbHelper {
     }
 
     @Override
+    public void updateMySelectionAddonChild(boolean mySelect, String addonId) {
+       mAppDatabase.addOnChildDao().updateMySelectionAddonChild(mySelect,addonId);
+    }
+
+    @Override
     public void deleteByOrderId(String OrderId) {
         mAppDatabase.newOrderDao().deleteByOrderId(OrderId);
     }
@@ -600,6 +605,21 @@ public final class AppDbHelper  implements DbHelper {
     public void updatePrepration(String OrderId, String preparationId) {
         mAppDatabase.orderPreparationDao().updatePrepration(OrderId,preparationId);
     }
+
+    @Override
+    public void updateSelectedAddonGroupId(String selectedAddonGroupId) {
+         mAppDatabase.addOnChildDao().updateSelectedAddonGroupId(selectedAddonGroupId);
+    }
+
+    @Override
+    public void update(OrderAddOnChild orderAddOnChild) {
+        mAppDatabase.orderAddonChildDao().update(orderAddOnChild);
+    }
+
+  /*  @Override
+    public void updateSelectedStatus(String isSelect, String addonId) {
+      mAppDatabase.orderAddonChildDao().UpdateSelectedStatus(isSelect, addonId);
+    }*/
 
     @Override
     public List<OrderAddOnChild> loadAllSelectdAddon(boolean isSelect, String OrderId, String ItemIdAddon,String addonsGroupId) {

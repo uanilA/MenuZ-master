@@ -34,6 +34,7 @@ import com.menuz.Utils.ConnectionDetector;
 import com.menuz.Utils.NoConnectionDialog;
 import com.menuz.application.MenuZ;
 import com.menuz.base.BaseActivity;
+import com.menuz.data.model.db.AdddonChildModel;
 import com.menuz.data.model.db.ItemModel;
 import com.menuz.data.model.db.NewOrderModel;
 import com.menuz.data.model.db.OrderAddOnChild;
@@ -68,6 +69,7 @@ import static com.menuz.application.MenuZ.getDataManager;
 
 public class CartDetailActivity extends BaseActivity implements View.OnClickListener, MenuOptionsAdapter.Listener {
 
+    private List<AdddonChildModel> adddonChildModelArrayList = new ArrayList<>();
     RelativeLayout iv_newView;
     private List<OrderItemModel> selectedItemList = new ArrayList<>();
     String popuptitle = "";
@@ -609,6 +611,7 @@ public class CartDetailActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        finish();
 
     }
 
@@ -797,5 +800,6 @@ public class CartDetailActivity extends BaseActivity implements View.OnClickList
                 break;
         }
     }
+
 
 }

@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.menuz.data.model.db.OrderAddOnChild;
 
@@ -76,13 +77,16 @@ public interface OrderAddonChildDao {
     List<OrderAddOnChild> loadAlladdons();
 
 
-    @Query("UPDATE   order_addonchild SET  OrderId =:OrderId WHERE addonId=:addonId")
+    @Query("UPDATE  order_addonchild SET  OrderId =:OrderId WHERE addonId=:addonId")
     void UpdateOrderId(String OrderId,String addonId);
 
     @Query("UPDATE order_addonchild SET isSyncSelect=:isSyncSelect WHERE addonId=:addonId AND ItemIdAddon=:ItemIdAddon AND addonGroupId=:addonGroupId")
     void updateIsSyncInAddons(boolean isSyncSelect,String addonId,String ItemIdAddon,String addonGroupId);
 
+/*
+    @Query("UPDATE  order_addonchild SET  isSelect =:isSelect WHERE addonId=:addonId")
+    void UpdateSelectedStatus(String isSelect,String addonId);*/
 
-
-
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void update(OrderAddOnChild bean);
 }

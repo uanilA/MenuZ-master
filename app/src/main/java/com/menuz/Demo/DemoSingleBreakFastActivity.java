@@ -77,6 +77,11 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
     HashMap<String, AddonPreprationModel> tempAddonPrep = new HashMap<>();
     HashMap<String, ItemPreprationModel> tempItemPrep = new HashMap<>();
     private Handler handler = new Handler(Looper.getMainLooper());
+    private ArrayList<ItemModel> myitemModels = new ArrayList<>();
+
+
+    private List<AdddonChildModel> adddonChildModelArrayList1 = new ArrayList<>();
+    public List<AddOnModel> addOnModelArrayList1 = new ArrayList<>();
 
 
     @Override
@@ -100,6 +105,7 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
             edit = intent.getStringExtra("edit");
             orderId = intent.getStringExtra("orderId");
             itemModel = (ItemModel) intent.getSerializableExtra("itemdata");
+            myitemModels.add(itemModel);
         }
 
         setContentView(R.layout.activity_demo_single_break_fast);
@@ -144,11 +150,10 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                         txtAddon.setBackground(getResources().getDrawable(R.drawable.button_active_addon));
                         txtPrep.setBackground(getResources().getDrawable(R.drawable.button_inactive_prep));
                     }
-                    //   txtPrep.setBackground(getResources().getDrawable(R.drawable.button_white));
+                    //txtPrep.setBackground(getResources().getDrawable(R.drawable.button_white));
                     txtPrep.setTextColor(getResources().getColor(R.color.colorPrimary));
-                     demoAddonFragment= DemoAddonFragment.newInstance(itemID, orderItemModel, edit, temAddonChildModelHashMap, tempAddonPrep, llButton, navigation, isUpdated);
+                    demoAddonFragment= DemoAddonFragment.newInstance(itemID, orderItemModel, edit, temAddonChildModelHashMap, tempAddonPrep, llButton, navigation, isUpdated);
                     addFragment(demoAddonFragment, false);
-
                 }
                 break;
 
@@ -167,14 +172,13 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                 break;
 
             case R.id.rlAddCart:
+
                 if (edit.equals("edit")) {
                     deleteCart(orderItemModel);
                     doAddCart(temAddonChildModelHashMap, tempAddonPrep, tempItemPrep);
 
                 } else {
                     doAddCart(temAddonChildModelHashMap, tempAddonPrep, tempItemPrep);
-
-
                 }
                 break;
 
@@ -204,27 +208,19 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
 
                     List<AdddonChildModel>adddonChildModelArrayList = new ArrayList<>();
 
-
                     for (int i = 0; i < addOnModelArrayList.size(); i++) {
                         if (addOnModelArrayList.get(i).getAddonsGroupIsMandatory().equals("1")){
                             addOnModelArrayList.get(i).isSelect=true;
                             String addOnGroupId=addOnModelArrayList.get(i).getAddonsGroupId();
-                           String addonItemid = addOnModelArrayList.get(position).getAddOnItemID();
-                           adddonChildModelArrayList = getDataManager().loadallAddonsByitemId(addOnGroupId, addonItemid);
+                            String addonItemid = addOnModelArrayList.get(position).getAddOnItemID();
+                            adddonChildModelArrayList = getDataManager().loadallAddonsByitemId(addOnGroupId, addonItemid);
                                 if (addOnModelArrayList.get(i).getAddonsGroupMax().equals("0")) {
                                     addonGroupname=addOnModelArrayList.get(i).getAddonsGroupName();
-
-
                                 }
                             }
-
-
-
-
                     }
 
                     if (demoAddonFragment.addOnAdapter != null){
-
                         List<AdddonChildModel> finalAdddonChildModelArrayList = adddonChildModelArrayList;
                         handler.post(() -> {
                             demoAddonFragment.addOnChildAdapter.setItems(finalAdddonChildModelArrayList);
@@ -244,8 +240,6 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
     String addonGroupname = "";
 
 
-
-
     /*Delete Items*/
 
     private void deleteCart(OrderItemModel orderItemModel) {
@@ -260,7 +254,6 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
 
             for (OrderPreparationAddonModel orderPreparationAddonModel : getAddonPrep) {
                 getDataManager().deleteAddonPrepration(orderPreparationAddonModel.getOrderPrepAddOnPrimaryKey());
-
 
             }
             for (OrderPreparationModel orderPreparationModel : getOrderItemPrep) {
@@ -306,12 +299,9 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                         if (addOnModel.getAddonsGroupIsMandatory().equals("1")){
                             if (addOnModel.getAddonsGroupId().equals(addonChild.getAddOnItemIdchild())){
                                 isSelected=true;
-                               // break;
                             }
                         }
                     }
-
-
                 }
 
                 if (!isSelected){
@@ -319,6 +309,7 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                 }else {
                     OrderItemModel orderItemModel1 = new OrderItemModel();
                     if (edit.equals("edit")) {
+
                         orderItemModel1.setItemAddonPrice(orderItemModel.getItemAddonPrice());
                         orderItemModel1.setItemGroupId(orderItemModel.getItemGroupId());
                         orderItemModel1.setItemId(orderItemModel.getItemId());
@@ -368,6 +359,7 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                     /*insert addongroup*/
                     if (edit.equals("edit")) {
                         OrderAddOnChild orderAddOnChild = new OrderAddOnChild();
+
                         for (AdddonChildModel addonChiildModel : temAddonChildModelHashMap.values()) {
                             assert addonChiildModel != null;
                             assert addonChiildModel.getAddonPrice() != null;
@@ -391,16 +383,15 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
 
                     } else {
                         OrderAddOnChild orderAddOnChild = new OrderAddOnChild();
+
                         for (AdddonChildModel addonChiildModel : temAddonChildModelHashMap.values()) {
                             assert addonChiildModel != null;
                             assert addonChiildModel.getAddonPrice() != null;
                             if (orderId.equals("")) {
                                 orderAddOnChild.setOrderId(MenuZ.getInstance().getOrderId());
-
                             } else {
                                 orderAddOnChild.setOrderId(orderId);
                             }
-
                             orderAddOnChild.setItemPrimaryKey(orderItemModel1.getItemPrimaryKey());
                             orderAddOnChild.setAddOnPrimaryKey(getTimestamp());
                             orderAddOnChild.setAddonAutoID("0");
@@ -418,7 +409,6 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                         }
 
                     }
-
 
                     if (addonPreprationModelCollection != null) {
                         if (edit.equals("edit")) {
@@ -527,6 +517,18 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                     }
 
                     handler.post(() -> {
+
+                        new Thread(() -> {
+                            addOnModelArrayList1 = getDataManager().loadallAddonByitems(itemID);
+                            for (int j = 0; j < addOnModelArrayList1.size(); j++ ){
+                                String myAddOnId = addOnModelArrayList1.get(j).getAddonsGroupId();
+                                String addonItemid = addOnModelArrayList1.get(j).getAddOnItemID();
+                                adddonChildModelArrayList1 = getDataManager().loadallAddonsByitemId(myAddOnId, addonItemid);
+                                for (int i = 0; i < adddonChildModelArrayList1.size(); i++) {
+                                    MenuZ.getDataManager().updateMySelectionAddonChild(false, adddonChildModelArrayList1.get(i).getAddonId());
+                                }
+                            }}).start();
+
                         if (getIntent() != null) {
                             if (getIntent().getStringExtra("from").equals("order")) {
                                 Intent intent = new Intent(getApplicationContext(), OrderDetailActivity.class);
@@ -748,14 +750,9 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                                 if (edit.equals("edit")) {
                                     getDataManager().updatecount(orderItemModel1.getNuofguest(), orderItemModel1.getItemId());
                                 }
-
-
                             } else {
                                 getDataManager().updatecount("1", orderItemModel1.getItemId());
-
                             }
-
-
                         } else {
                             getDataManager().updatecount("1", orderItemModel1.getItemId());
                         }
@@ -768,6 +765,19 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
 
 
                 handler.post(() -> {
+
+                    new Thread(() -> {
+                        addOnModelArrayList1 = getDataManager().loadallAddonByitems(itemID);
+                        for (int j = 0; j < addOnModelArrayList1.size(); j++ ){
+                            String myAddOnId = addOnModelArrayList1.get(j).getAddonsGroupId();
+                            String addonItemid = addOnModelArrayList1.get(j).getAddOnItemID();
+                            adddonChildModelArrayList1 = getDataManager().loadallAddonsByitemId(myAddOnId, addonItemid);
+                            for (int i = 0; i < adddonChildModelArrayList1.size(); i++) {
+                                MenuZ.getDataManager().updateMySelectionAddonChild(false, adddonChildModelArrayList1.get(i).getAddonId());
+                            }
+                        }}).start();
+
+
                     if (getIntent() != null) {
                         if (getIntent().getStringExtra("from").equals("order")) {
                             Intent intent = new Intent(getApplicationContext(), OrderDetailActivity.class);
@@ -787,18 +797,10 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                             startActivityForResult(intent,101);
                         }
                     }
-
                     //finish();
                 });
             }
-
-
-
-
         }).start();
-
-
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -812,7 +814,6 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
         RelativeLayout rlAddCart = findViewById(R.id.rlAddCart);
 
         rlAddCart.setOnClickListener(this);
-
 
         // llPrep = findViewById(R.id.llPrep);
         RelativeLayout rlCart = findViewById(R.id.rlCart);
@@ -847,7 +848,6 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
             txtAddCart.setText("Add to Cart");
         }
 
-
         viewPager = findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
@@ -862,25 +862,18 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
 
                 int keypadHeight = screenHeight - r.bottom;
 
-
                 if (keypadHeight > screenHeight * 0.15) {
                     // edRemark.setFocusable(true);
                     llButton.setVisibility(View.GONE);
-
                 } else {
-
                     llButton.setVisibility(View.VISIBLE);
-
-
                 }
             });
-
         } else {
             rlCancel.setVisibility(View.GONE);
             rlAddCart.setVisibility(View.GONE);
             llButton.setVisibility(View.GONE);
         }
-
 
         new Thread(() -> {
             List<OrderItemModel> selectedItemList = getDataManager().getAllorderItem(MenuZ.getInstance().getOrderId());
@@ -888,81 +881,70 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                 if (!orderItemModel1.getCountPrice().equals("")) {
                     totalcost += Integer.parseInt((orderItemModel1.getCountPrice()));
                 }
-
-
             }
             int finalTotalcost = totalcost;
             handler.post(() -> cartCountTxt.setText("" + finalTotalcost));
-
         }).start();
 
         /*Prepared item prepration list*/
 
         new Thread(() -> {
-            if (edit.equals("edit")) {
-                JSONArray jsonArray;
-                ArrayList<String> myList = new ArrayList<>();
-                List<PreparationModel> preparationModels = new ArrayList<>();
-                try {
-                    jsonArray = new JSONArray(orderItemModel.getPreparations());
-                    for (int l = 0; l < jsonArray.length(); l++) {
-                        String jsonObject = jsonArray.getString(l);
-                        myList.add(jsonObject);
+            try {
+                if (edit.equals("edit")) {
+                    JSONArray jsonArray;
+                    ArrayList<String> myList = new ArrayList<>();
+                    List<PreparationModel> preparationModels = new ArrayList<>();
+                    try {
+                        jsonArray = new JSONArray(orderItemModel.getPreparations());
+                        for (int l = 0; l < jsonArray.length(); l++) {
+                            String jsonObject = jsonArray.getString(l);
+                            myList.add(jsonObject);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    preparationModels.clear();
+                    preparationModels = getDataManager().getallDatabtId(myList);
+                    for (int k = 0; k < preparationModels.size(); k++) {
+                        // List<PreparationModel> preparationModelList = getDataManager().getallDatabtId(myList.get(k));
+                        PreparationModel preparationModel = preparationModels.get(k);
+                        ItemPreprationModel itemPreprationModel = new ItemPreprationModel();
+                        itemPreprationModel.setItemId(orderItemModel.getItemId());
+                        itemPreprationModel.setItemName(orderItemModel.getItemName());
+                        itemPreprationModel.setPreparationName(preparationModel.getPreparationName());
+                        itemPreprationModel.setPreparationIsPrefixed(preparationModel.getPreparationIsPrefixed());
+                        itemPreprationModel.setPreparationId(preparationModel.getPreparationId());
+                        getDataManager().insertItemPrep(itemPreprationModel);
+                    }
+                } else {
+                    JSONArray jsonArray;
+                    ArrayList<String> myList = new ArrayList<>();
+                    List<PreparationModel> preparationModels = new ArrayList<>();
+                    try {
+                        jsonArray = new JSONArray(itemModel.getPreparations());
+                        for (int l = 0; l < jsonArray.length(); l++) {
+                            String jsonObject = jsonArray.getString(l);
+                            myList.add(jsonObject);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                    preparationModels.clear();
+                    preparationModels = getDataManager().getallDatabtId(myList);
 
-                preparationModels.clear();
-                preparationModels = getDataManager().getallDatabtId(myList);
-
-                for (int k = 0; k < preparationModels.size(); k++) {
-                    // List<PreparationModel> preparationModelList = getDataManager().getallDatabtId(myList.get(k));
-                    PreparationModel preparationModel = preparationModels.get(k);
-                    ItemPreprationModel itemPreprationModel = new ItemPreprationModel();
-                    itemPreprationModel.setItemId(orderItemModel.getItemId());
-                    itemPreprationModel.setItemName(orderItemModel.getItemName());
-                    itemPreprationModel.setPreparationName(preparationModel.getPreparationName());
-                    itemPreprationModel.setPreparationIsPrefixed(preparationModel.getPreparationIsPrefixed());
-                    itemPreprationModel.setPreparationId(preparationModel.getPreparationId());
-                    getDataManager().insertItemPrep(itemPreprationModel);
-
-                }
-
-            } else {
-                JSONArray jsonArray;
-                ArrayList<String> myList = new ArrayList<>();
-                List<PreparationModel> preparationModels = new ArrayList<>();
-                try {
-                    jsonArray = new JSONArray(itemModel.getPreparations());
-                    for (int l = 0; l < jsonArray.length(); l++) {
-                        String jsonObject = jsonArray.getString(l);
-                        myList.add(jsonObject);
+                    for (int k = 0; k < preparationModels.size(); k++) {
+                        // List<PreparationModel> preparationModelList = getDataManager().getallDatabtId(myList.get(k));
+                        PreparationModel preparationModel = preparationModels.get(k);
+                        ItemPreprationModel itemPreprationModel = new ItemPreprationModel();
+                        itemPreprationModel.setItemId(itemModel.getItemId());
+                        itemPreprationModel.setItemName(itemModel.getItemName());
+                        itemPreprationModel.setPreparationName(preparationModel.getPreparationName());
+                        itemPreprationModel.setPreparationIsPrefixed(preparationModel.getPreparationIsPrefixed());
+                        itemPreprationModel.setPreparationId(preparationModel.getPreparationId());
+                        getDataManager().insertItemPrep(itemPreprationModel);
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-
-                preparationModels.clear();
-                preparationModels = getDataManager().getallDatabtId(myList);
-
-                for (int k = 0; k < preparationModels.size(); k++) {
-                    // List<PreparationModel> preparationModelList = getDataManager().getallDatabtId(myList.get(k));
-                    PreparationModel preparationModel = preparationModels.get(k);
-                    ItemPreprationModel itemPreprationModel = new ItemPreprationModel();
-                    itemPreprationModel.setItemId(itemModel.getItemId());
-                    itemPreprationModel.setItemName(itemModel.getItemName());
-                    itemPreprationModel.setPreparationName(preparationModel.getPreparationName());
-                    itemPreprationModel.setPreparationIsPrefixed(preparationModel.getPreparationIsPrefixed());
-                    itemPreprationModel.setPreparationId(preparationModel.getPreparationId());
-                    getDataManager().insertItemPrep(itemPreprationModel);
-
-                }
-            }
-
-
             if (edit.equals("edit")) {
 
                 List<ItemPreprationModel> preparationModalArrayList = getDataManager().loadallPrepByItemId(orderItemModel.getItemId());
@@ -975,7 +957,6 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                             txtAddon.setBackground(getResources().getDrawable(R.drawable.button_active_addon));
                             txtPrep.setBackground(getResources().getDrawable(R.drawable.button_inactive_prep));
                         }
-
                         //   txtPrep.setBackground(getResources().getDrawable(R.drawable.button_white));
                         txtPrep.setTextColor(getResources().getColor(R.color.colorPrimary));
                         demoAddonFragment= DemoAddonFragment.newInstance(itemID, orderItemModel, edit, temAddonChildModelHashMap, tempAddonPrep, llButton, navigation, isUpdated);
@@ -1065,6 +1046,7 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
                     }
                 });
             }
+            }catch (Exception e){e.printStackTrace();}
         }).start();
         tabLayout.post(() -> tabLayout.setupWithViewPager(viewPager));
     }
@@ -1094,5 +1076,19 @@ public class DemoSingleBreakFastActivity extends BaseActivity implements View.On
         addonList=addOnModelHashMap;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        new Thread(() -> {
+            addOnModelArrayList1 = getDataManager().loadallAddonByitems(itemID);
+            for (int j = 0; j < addOnModelArrayList1.size(); j++ ){
+                String myAddOnId = addOnModelArrayList1.get(j).getAddonsGroupId();
+                String addonItemid = addOnModelArrayList1.get(j).getAddOnItemID();
+                adddonChildModelArrayList1 = getDataManager().loadallAddonsByitemId(myAddOnId, addonItemid);
+                for (int i = 0; i < adddonChildModelArrayList1.size(); i++) {
+                    MenuZ.getDataManager().updateMySelectionAddonChild(false, adddonChildModelArrayList1.get(i).getAddonId());
+                }
+            }}).start();
+        finish();
+    }
 }

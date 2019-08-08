@@ -194,33 +194,34 @@ public class SelectWaiterActivity extends BaseActivity implements SelectwaitorAd
                 } else {
 
                     /*Insert data of employee into order*/
-
-                        new Thread(() -> {
-                            OrderEmployeeModel orderEmployeeModel = new OrderEmployeeModel();
-                            orderEmployeeModel.setOrderId(MenuZ.getInstance().getOrderId());
-                            orderEmployeeModel.setEmployeeId(employeeModel.getEmployeeId());
-                            orderEmployeeModel.setEmployeeName(employeeModel.getEmployeeName());
-                            orderEmployeeModel.setNuofguest(edNumberofguest.getText().toString());
-                            new Thread(() -> getDataManager().insertOrderEmployee(orderEmployeeModel)).start();
-                            newOrderModel.setOrderId(MenuZ.getInstance().getOrderId());
-                            MenuZ.getInstance().setEmployeeId(employeeModel.getEmployeeId());
-                            newOrderModel.setNuofguest(edNumberofguest.getText().toString());
-                            newOrderModel.setZoneId(zonemodel.getZoneId());
-                            newOrderModel.setZoneName(zonemodel.getZoneName());
-                            newOrderModel.setEmployeeId(employeeModel.getEmployeeId());
-                            newOrderModel.setTableId(tableModel.getTableId());
-                            newOrderModel.setEmployeeName(employeeModel.getEmployeeName());
-                            getDataManager().insertNewOrder(newOrderModel);
-                            handler.post(() -> {
-                                Intent intent = new Intent(SelectWaiterActivity.this, NewOrderActivity.class);
-                                intent.putExtra("orderId",MenuZ.getInstance().getOrderId());
-                                intent.putExtra("from","");
-                                intent.putExtra("isUpdated","");
-                                intent.putExtra("navigation","neworder");
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                            });
-                        }).start();
+                       try {
+                           new Thread(() -> {
+                               OrderEmployeeModel orderEmployeeModel = new OrderEmployeeModel();
+                               orderEmployeeModel.setOrderId(MenuZ.getInstance().getOrderId());
+                               orderEmployeeModel.setEmployeeId(employeeModel.getEmployeeId());
+                               orderEmployeeModel.setEmployeeName(employeeModel.getEmployeeName());
+                               orderEmployeeModel.setNuofguest(edNumberofguest.getText().toString());
+                               new Thread(() -> getDataManager().insertOrderEmployee(orderEmployeeModel)).start();
+                               newOrderModel.setOrderId(MenuZ.getInstance().getOrderId());
+                               MenuZ.getInstance().setEmployeeId(employeeModel.getEmployeeId());
+                               newOrderModel.setNuofguest(edNumberofguest.getText().toString());
+                               newOrderModel.setZoneId(zonemodel.getZoneId());
+                               newOrderModel.setZoneName(zonemodel.getZoneName());
+                               newOrderModel.setEmployeeId(employeeModel.getEmployeeId());
+                               newOrderModel.setTableId(tableModel.getTableId());
+                               newOrderModel.setEmployeeName(employeeModel.getEmployeeName());
+                               getDataManager().insertNewOrder(newOrderModel);
+                               handler.post(() -> {
+                                   Intent intent = new Intent(SelectWaiterActivity.this, NewOrderActivity.class);
+                                   intent.putExtra("orderId", MenuZ.getInstance().getOrderId());
+                                   intent.putExtra("from", "");
+                                   intent.putExtra("isUpdated", "");
+                                   intent.putExtra("navigation", "neworder");
+                                   intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                   startActivity(intent);
+                               });
+                           }).start();
+                       }catch (Exception e){e.printStackTrace();}
                     }
 
 

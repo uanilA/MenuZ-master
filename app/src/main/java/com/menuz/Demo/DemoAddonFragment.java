@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.menuz.R;
+import com.menuz.application.MenuZ;
 import com.menuz.base.BaseFragment;
 import com.menuz.data.model.db.AddOnModel;
 import com.menuz.data.model.db.AdddonChildModel;
@@ -62,7 +63,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
     public AddOnAdapter addOnAdapter;
     public AddOnChildAdapter addOnChildAdapter;
     private String addonGroupname = "";
-    String remark="";
+    String remark = "";
     private TextView txtLimit;
     private TextView preprationName;
     private Handler handler = new Handler(Looper.myLooper());
@@ -81,7 +82,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
     HashMap<String, AddonPreprationModel> addonPreprationModelHashMap = new HashMap<>();
     private String navigation = "";
     private String addOnGroupId = "";
-    private  LinearLayout linearLayout;
+    private LinearLayout linearLayout;
     private String addonItemid = "";
     private String limit = "";
     private String isUpdated = "";
@@ -95,7 +96,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
         DemoAddonFragment fragment = new DemoAddonFragment();
         Bundle args = new Bundle();
         fragment.setInstanceData(itemID, orderItemModel, temAddonChildModelHashMap, tempAddonPrep, edit,
-                llButton,navigation,isUpdated);
+                llButton, navigation, isUpdated);
         fragment.setArguments(args);
         return fragment;
     }
@@ -103,11 +104,11 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
     private void setInstanceData(String itemID, OrderItemModel orderItemModel, HashMap<String, AdddonChildModel> temAddonChildModelHashMap, HashMap<String, AddonPreprationModel> tempAddonPrep, String edit, LinearLayout linearLayout, String navigation, String isUpdated) {
         this.ItemID = itemID;
         this.orderItemModel = orderItemModel;
-        this.adddonChildModelHashMap =temAddonChildModelHashMap;
-        this.addonPreprationModelHashMap =tempAddonPrep;
-        this.navigation=navigation;
-        this.linearLayout=linearLayout;
-        this.isUpdated=isUpdated;
+        this.adddonChildModelHashMap = temAddonChildModelHashMap;
+        this.addonPreprationModelHashMap = tempAddonPrep;
+        this.navigation = navigation;
+        this.linearLayout = linearLayout;
+        this.isUpdated = isUpdated;
         this.edit = edit;
     }
 
@@ -133,7 +134,6 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
         txtLimit = view.findViewById(R.id.txtLimit);
         TextView txtNoAddon = view.findViewById(R.id.txtNoAddon);
         TextView txtDone = view.findViewById(R.id.txtDone);
-       // TextView txtAddCart = view.findViewById(R.id.txtAddCart);
         RelativeLayout rlParent = view.findViewById(R.id.rlParent);
         txtDone.setOnClickListener(this);
         edRemark = view.findViewById(R.id.edRemark);
@@ -152,10 +152,10 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
         new Thread(() -> {
             if (edit.equals("edit")) {
                 addOnModelArrayList = getDataManager().loadallAddonByitems(orderItemModel.getItemId());
-               // handler.post(() -> txtAddCart.setText(R.string.update_cart));
+                // handler.post(() -> txtAddCart.setText(R.string.update_cart));
             } else {
                 addOnModelArrayList = getDataManager().loadallAddonByitems(ItemID);
-               // handler.post(() -> txtAddCart.setText(R.string.add_to_cart));
+                // handler.post(() -> txtAddCart.setText(R.string.add_to_cart));
             }
 
             handler.post(() -> {
@@ -175,9 +175,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
             Rect r = new Rect();
             rlParent.getWindowVisibleDisplayFrame(r);
             int screenHeight = rlParent.getRootView().getHeight();
-
             int keypadHeight = screenHeight - r.bottom;
-
             try {
                 if (keypadHeight > screenHeight * 0.15) {
                     edRemark.setFocusable(true);
@@ -185,7 +183,9 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                 } else {
                     linearLayout.setVisibility(View.VISIBLE);
                 }
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
         edRemark.addTextChangedListener(new TextWatcher() {
             @Override
@@ -200,14 +200,16 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable s) {
-                remark=edRemark.getText().toString();
-                if (adddonChildModelN.getAddonPrice()!=null){
-                    adddonChildModelN.setAddonRemark(remark);
-                    if (!selectedAddonId.equals("")){
-                        adddonChildModelHashMap.put(selectedAddonId, adddonChildModelN);
-                    }
+                remark = edRemark.getText().toString();
+                try {
+                    if (adddonChildModelN.getAddonPrice() != null) {
+                        adddonChildModelN.setAddonRemark(remark);
+                        if (!selectedAddonId.equals("")) {
+                            adddonChildModelHashMap.put(selectedAddonId, adddonChildModelN);
+                        }
 
-                }
+                    }
+                }catch (Exception e){e.printStackTrace();}
             }
         });
 
@@ -238,7 +240,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                 }else {
                     addCart();
                 }*/
-               break;
+                break;
         }
     }
 
@@ -250,17 +252,16 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
     /*Show AddonGroup*/
     private void updateUiAddonGroup(List<AddOnModel> addOnModels) {
         setData(addOnModels);
-     //addOnModels.get(0).isSelect=true;
-        if(addOnModels.size()>0){
-            AddOnModel addOnModel= addOnModels.get(0);
+        //addOnModels.get(0).isSelect=true;
+        if (addOnModels.size() > 0) {
+            AddOnModel addOnModel = addOnModels.get(0);
 
-            addOnModelHashMap.put(addOnModels.get(0).getAddonsGroupName(),addOnModel);
+            addOnModelHashMap.put(addOnModels.get(0).getAddonsGroupName(), addOnModel);
             getAddonandPrepSelectedListener.getAddonGroup(addOnModelHashMap);
-
-
             addOnAdapter = new AddOnAdapter(mContext, addOnModels, new AddOnAdapter.onItemClick() {
                 @Override
                 public void position(int position) {
+
                     new Thread(() -> {
                         try {
                             AddOnModel addOnModel1 = addOnModels.get(position);
@@ -272,9 +273,10 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                             getAddonandPrepSelectedListener.getAddonGroup(addOnModelHashMap);
 
                             addonGroupname = addOnModels.get(position).getAddonsGroupName();
-                            adddonChildModelArrayList.clear();
 
-                            adddonChildModelArrayList = getDataManager().loadallAddonsByitemId(addOnGroupId, addonItemid);
+                            adddonChildModelArrayList.clear();
+                            adddonChildModelArrayList.addAll(getDataManager().loadallAddonsByitemId(addOnGroupId, addonItemid));
+
                             addOnChildAdapter.setItems(adddonChildModelArrayList);
                             addOnChildAdapter.setlimit(limit);
                             addOnChildAdapter.notifyDataSetChanged();
@@ -302,22 +304,58 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                                     txtAddons.setText(String.format("%s-", addonGroupname));
                                     txtLimit.setText(String.format("%s limit", addOnModels.get(position).getAddonsGroupMax()));
                                 }
+
                                 showSelectedAddons(adddonChildModelArrayList, limit);
                             });
-                        }catch (Exception e){e.printStackTrace();}
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }).start();
+
+
+                  /* final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.e("TAG","test data");
+                            new Thread(() -> {
+                                adddonChildModelArrayList.clear();
+                                adddonChildModelArrayList.addAll(getDataManager().loadallAddonsByitemId(addOnGroupId, addonItemid));
+                                addOnChildAdapter.setItems(adddonChildModelArrayList);
+                                addOnChildAdapter.setlimit(limit);
+                            }).start();
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.e("TAG","test data runnable");
+                                    addOnChildAdapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    }, 200);*/
+
                 }
+
                 @Override
                 public void cancel(int position) {
-                    AddOnModel addOnModel=addOnModels.get(position);
-                    if (addOnModel.isSyncSelect()){
-                        alertDialog("Please contact the administrator to cancel any addon or preparation",mContext);
-                    }else {
+
+                    new Thread(() -> {
+                        adddonChildModelArrayList = getDataManager().loadallAddonsByitemId(addOnGroupId, addonItemid);
+                        for (int i = 0; i < adddonChildModelArrayList.size(); i++) {
+                            MenuZ.getDataManager().updateMySelectionAddonChild(false, adddonChildModelArrayList.get(i).getAddonId());
+                        }
+                    }).start();
+
+                    AddOnModel addOnModel = addOnModels.get(position);
+                    if (addOnModel.isSyncSelect()) {
+                        alertDialog("Please contact the administrator to cancel any addon or preparation", mContext);
+                    } else {
                         txtAddons.setVisibility(View.GONE);
                         txtLimit.setVisibility(View.GONE);
-                        if (navigation.equals("neworder")){
+                        if (navigation.equals("neworder")) {
                             llRemark.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             llRemark.setVisibility(View.GONE);
                         }
                         addonPrepRecyclerView.setVisibility(View.GONE);
@@ -333,11 +371,12 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                     }
                     //  assert addOnPreAdapter!=null;
                 }
+
                 @Override
                 public void isSelected(String isSelected) {
 
                 }
-            },navigation);
+            }, navigation);
             LinearLayoutManager horizontalLayoutManagaer
                     = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
             addOnRecyclerView.setLayoutManager(horizontalLayoutManagaer);
@@ -358,7 +397,6 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
         if (edit.equals("edit")) {
             new Thread(() -> {
                 List<OrderAddOnChild> cartSeltedAddonList = getDataManager().loadAllSelectedAddons(orderItemModel.getItemPrimaryKey(), orderItemModel.getOrderId());
-
                 // addOnModelArrayList = getDataManager().loadallAddonByitems(orderItemModel.getItemId());
                 for (AddOnModel addonModel : addOnModelArrayList) {
                     for (OrderAddOnChild orderAddOnChild : cartSeltedAddonList) {
@@ -367,6 +405,10 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                             addonModel.setSyncSelect(orderAddOnChild.isSyncSelect());
                             setpreSelectAddoninHashmap(orderAddOnChild);
                             handler.post(() -> addOnAdapter.notifyDataSetChanged());
+                           // new Thread(() -> {
+                                adddonChildModelArrayList = getDataManager().loadallAddonsByitemId(addonModel.getAddonsGroupId(), addonModel.getAddOnItemID());
+                          //  }).start();
+                            showSelectedAddons(adddonChildModelArrayList, addonModel.getAddonsGroupMax());
                             break;
                         }
                     }
@@ -377,36 +419,38 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
 
     public void showSelectedAddons(List<AdddonChildModel> list, String limit) {
         if (edit.equals("edit")) {
-            new Thread(() -> {
-                List<OrderAddOnChild> cartSeltedAddonList = getDataManager().loadAllSelectedAddons(orderItemModel.getItemPrimaryKey(), orderItemModel.getOrderId());
-                for (OrderAddOnChild orderAddonsChild : cartSeltedAddonList) {
-                    int size = list.size();
-                    for (int i = 0; i < size; i++) {
-                        AdddonChildModel adddonChildModel = list.get(i);
-                        if (orderAddonsChild.getAddonId().equals(adddonChildModel.getAddonId())) {
-                           /* adddonChildModel.isSelect = true;*/
-                            adddonChildModel.setSelect(true);
-                            adddonChildModel.setSelect(orderAddonsChild.isSelect());
-                            selectedAddonId = orderAddonsChild.getAddonId();
-                            //adddonChildModelN=orderAddonsChild.getAddonId();
-                            handler.post(() -> edRemark.setText(adddonChildModel.getAddonRemark()));
-                            adddonChildModel.setAddonRemark(remark);
-                            adddonChildModel.setAddonAutoID(orderAddonsChild.getAddonAutoID());
-                            adddonChildModelHashMap.put(adddonChildModel.getAddonId(), adddonChildModel);
-                            getAddonandPrepSelectedListener.getHashMapAddons(adddonChildModelHashMap);
-                            setPreSelectedPreprationinHashMap(adddonChildModelArrayList, preprationModelList);
+            try {
+                new Thread(() -> {
+                    List<OrderAddOnChild> cartSeltedAddonList = getDataManager().loadAllSelectedAddons(orderItemModel.getItemPrimaryKey(), orderItemModel.getOrderId());
+                    for (OrderAddOnChild orderAddonsChild : cartSeltedAddonList) {
+                        int size = list.size();
+                        for (int i = 0; i < size; i++) {
+                            AdddonChildModel adddonChildModel = list.get(i);
+                            if (orderAddonsChild.getAddonId().equals(adddonChildModel.getAddonId())) {
+                                /* adddonChildModel.isSelect = true;*/
+                                adddonChildModel.setMySelect(true);
+                               // adddonChildModel.setMySelect(orderAddonsChild.isSelect());
+                                selectedAddonId = orderAddonsChild.getAddonId();
+                                //adddonChildModelN=orderAddonsChild.getAddonId();
+                                handler.post(() -> edRemark.setText(adddonChildModel.getAddonRemark()));
+                                adddonChildModel.setAddonRemark(remark);
+                                adddonChildModel.setAddonAutoID(orderAddonsChild.getAddonAutoID());
+                                adddonChildModelHashMap.put(adddonChildModel.getAddonId(), adddonChildModel);
+                                getAddonandPrepSelectedListener.getHashMapAddons(adddonChildModelHashMap);
+                                setPreSelectedPreprationinHashMap(adddonChildModelArrayList, preprationModelList);
+                            }
                         }
                     }
-                }
-                handler.post(() -> {
-                    addOnChildAdapter.setItems(list);
-                    addOnChildAdapter.setlimit(limit);
-                    addOnChildAdapter.notifyDataSetChanged();
-                });
-            }).start();
-            addOnChildAdapter.setItems(list);
-            addOnChildAdapter.setlimit(limit);
-            addOnChildAdapter.notifyDataSetChanged();
+                    handler.post(() -> {
+                        addOnChildAdapter.setItems(list);
+                        addOnChildAdapter.setlimit(limit);
+                        addOnChildAdapter.notifyDataSetChanged();
+                    });
+                }).start();
+              /*addOnChildAdapter.setItems(list);
+                addOnChildAdapter.setlimit(limit);
+                addOnChildAdapter.notifyDataSetChanged();*/
+            }catch (Exception e){e.printStackTrace();}
         }
     }
 
@@ -417,11 +461,11 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
         int size = adddonChildModelArrayList.size();
         for (int i = 0; i < size; i++) {
             AdddonChildModel adddonChildModel = adddonChildModelArrayList.get(i);
-            adddonChildModelN=adddonChildModelArrayList.get(i);
+            adddonChildModelN = adddonChildModelArrayList.get(i);
             if (orderAddOnChild.getAddonId().equals(adddonChildModel.getAddonId())) {
                 selectedAddonId = adddonChildModel.getAddonId();
                 adddonChildModel.setAddonRemark(remark);
-                adddonChildModel.setSelect(orderAddOnChild.isSelect());
+                adddonChildModel.setMySelect(orderAddOnChild.isSelect());
                 adddonChildModelHashMap.put(adddonChildModel.getAddonId(), adddonChildModel);
                 getAddonandPrepSelectedListener.getHashMapAddons(adddonChildModelHashMap);
                 setPreSelectedPreprationinHashMap(adddonChildModelArrayList, preprationModelList);
@@ -437,11 +481,13 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                 for (AdddonChildModel adddonChildModel : adddonChildModelArrayList) {
                     OrderPreparationAddonModel orderPreparationAddonModel = tempOrderPreparationAddonModels.get(i);
                     if (addonPreprationModel.getPreparationName().equals(orderPreparationAddonModel.getPreparationName()) && adddonChildModel.getAddonId().equals(selectedAddonId)) {
-                        selectedAddonId = orderAddOnChild.getAddonId();
-                        addonPreprationModel.setPrefixName(orderPreparationAddonModel.getPrefixName());
-                        handler.post(() -> edRemark.setText(adddonChildModel.getAddonRemark()));
-                        addonPreprationModelHashMap.put(addonPreprationModel.getPreparationId(), addonPreprationModel);
-                        getAddonandPrepSelectedListener.getHashMapPreprationAddons(addonPreprationModelHashMap);
+                       try {
+                           selectedAddonId = orderAddOnChild.getAddonId();
+                           addonPreprationModel.setPrefixName(orderPreparationAddonModel.getPrefixName());
+                           handler.post(() -> edRemark.setText(adddonChildModel.getAddonRemark()));
+                           addonPreprationModelHashMap.put(addonPreprationModel.getPreparationId(), addonPreprationModel);
+                           getAddonandPrepSelectedListener.getHashMapPreprationAddons(addonPreprationModelHashMap);
+                       }catch (Exception e){e.printStackTrace();}
                     }
                 }
             }
@@ -452,9 +498,9 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
     /*Show Addons*/
     @SuppressLint("SetTextI18n")
     private void setData(List<AddOnModel> addOnModels) {
-        if (addOnModels.size()>0){
+        if (addOnModels.size() > 0) {
             addOnGroupId = addOnModels.get(0).getAddonsGroupId();
-            addonGroupname=addOnModels.get(0).getAddonsGroupName();
+            addonGroupname = addOnModels.get(0).getAddonsGroupName();
             addonItemid = addOnModels.get(0).getAddOnItemID();
             /*    if (edit.equals("edit")) {
                 new Thread(() -> {
@@ -474,18 +520,13 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                                 adddonChildModelHashMap.put(adddonChildModel.getAddonId(), adddonChildModel);
                                 getAddonandPrepSelectedListener.getHashMapAddons(adddonChildModelHashMap);
 
-                                setPreSelectedPreprationinHashMap(adddonChildModelArrayList, preprationModelList);
-
-
-                            }
+                               setPreSelectedPreprationinHashMap(adddonChildModelArrayList, preprationModelList);
+                       }
                         }
                     }
                 }).start();
-
-
             }
 */
-
             String finalLimit = addOnModels.get(0).getAddonsGroupMax();
             new Thread(() -> {
                 adddonChildModelArrayList = getDataManager().loadallAddonsByitemId(addOnGroupId, addonItemid);
@@ -512,39 +553,40 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                                 String preprations = adddonChildModelArrayList.get(position).getPreparations();
                                 insertPrep(position, itemId, addonGroupId, preprations);
                                 addonPrepRecyclerView.setVisibility(View.VISIBLE);
-                                if (navigation.equals("neworder")){
+                                if (navigation.equals("neworder")) {
                                     llRemark.setVisibility(View.VISIBLE);
-                                }else {
+                                } else {
                                     llRemark.setVisibility(View.GONE);
                                 }
                                 preprationName.setVisibility(View.VISIBLE);
                                 selectedAddonId = adddonChildModelN.getAddonId();
-                                remark=edRemark.getText().toString();
+                                remark = edRemark.getText().toString();
                                 edRemark.setText(remark);
                                 adddonChildModelN.setAddonRemark(remark);
                                 edRemark.setText(adddonChildModelN.getAddonRemark());
                                 adddonChildModelHashMap.put(adddonChildModelN.getAddonId(), adddonChildModelN);
                                 showAddonRemark();
                                 getAddonandPrepSelectedListener.getHashMapAddons(adddonChildModelHashMap);
+                                addOnChildAdapter.notifyDataSetChanged();
                             }
                         }
 
                         @Override
                         public void cancel(int position) {
-                            try{
+                            try {
                                 adddonChildModelN = adddonChildModelArrayList.get(position);
-                                if (adddonChildModelN.isSelect()){
-                                    alertDialog("Please contact the administrator to cancel any addon or preparation",mContext);
-                                }else {
+                                if (adddonChildModelN.isSyncSelect()) {
+                                    alertDialog("Please contact the administrator to cancel any addon or preparation", mContext);
+                                } else {
                                     adddonChildModelN = adddonChildModelArrayList.get(position);
                                     adddonChildModelHashMap.remove(adddonChildModelN.getAddonId());
                                     getAddonandPrepSelectedListener.getHashMapAddons(adddonChildModelHashMap);
-                                    for (int i = 0; i <adddonChildModelArrayList.size() ; i++) {
-                                        AdddonChildModel adddonChildModel=adddonChildModelArrayList.get(i);
-                                        if (adddonChildModel.isSelect()){
+                                    for (int i = 0; i < adddonChildModelArrayList.size(); i++) {
+                                        AdddonChildModel adddonChildModel = adddonChildModelArrayList.get(i);
+                                        if (adddonChildModel.isMySelect()) {
                                             insertPrep(position, adddonChildModel.getItemIdAddon(), adddonChildModel.getAddOnItemIdchild(), adddonChildModel.getPreparations());
                                             break;
-                                        }else {
+                                        } else {
                                             preprationName.setVisibility(View.GONE);
                                             // preprationModelList.clear();
                                             if (addOnPreAdapter != null) {
@@ -554,11 +596,12 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                                         }
                                     }
                                 }
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
+                            addOnChildAdapter.notifyDataSetChanged();
                         }
-                    }, finalLimit,navigation,isUpdated);
+                    }, finalLimit, navigation, isUpdated);
                     addonSubCatRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
                     addonSubCatRecyclerView.setAdapter(addOnChildAdapter);
                 });
@@ -566,8 +609,8 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
-    void showAddonRemark(){
-        if (edit.equals("edit")){
+    void showAddonRemark() {
+        if (edit.equals("edit")) {
             new Thread(() -> {
                 List<OrderAddOnChild> cartSeltedAddonList = getDataManager().loadAllSelectedAddons(orderItemModel.getItemPrimaryKey(), orderItemModel.getOrderId());
                 // addOnModelArrayList = getDataManager().loadallAddonByitems(orderItemModel.getItemId());
@@ -599,6 +642,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
 
                     preparationModelArrayList.clear();
                     preparationModelArrayList = getDataManager().getallDatabtId(myList);
+                    try {
                     for (int k = 0; k < preparationModelArrayList.size(); k++) {
                         PreparationModel preparationModel = preparationModelArrayList.get(k);
                         AddonPreprationModel orderPreparationAddonModel = new AddonPreprationModel();
@@ -611,13 +655,13 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                         orderPreparationAddonModel.setAddonName(adddonChildModelArrayList.get(position).getAddonName());
                         orderPreparationAddonModel.setPreparationId(myList.get(k));
                         getDataManager().insertAddonPrep(orderPreparationAddonModel);
-
                     }
+                    }catch (IndexOutOfBoundsException e){e.printStackTrace();}
+
                     String addonId = adddonChildModelArrayList.get(position).getAddonId();
                     String addonName = adddonChildModelArrayList.get(position).getAddonName();
                     updateUiPrep(itemID, addonsGroupId, addonId, addonName);
                 } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }).start();
     }
@@ -655,9 +699,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                         addonPreprationModelHashMap.put(addonPreprationModel.getPreparationId(), addonPreprationModel);
                         EventBus.getDefault().post(new RefreshData(true));
                         addonPreprationModel.setAddonId(addonId);
-
                         getAddonandPrepSelectedListener.getHashMapPreprationAddons(addonPreprationModelHashMap);
-
                         //for preselect prep
                         adddonChildModelN.prepId = addonPreprationModel.getPreparationId();
                     }
@@ -665,16 +707,20 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void cancel(int position) {
-                        if (isUpdated.equals("true")){
-                            alertDialog("Please contact the administrator to cancel any addon or preparation",mContext);
-                        }else {
+                        if (isUpdated.equals("true")) {
+                            alertDialog("Please contact the administrator to cancel any addon or preparation", mContext);
+                        } else {
                             addonPreprationModel = preprationModelList.get(position);
                             String interest = preprationModelList.get(position).getPreparationId();
                             adddonChildModelN.prepId = "";
-
-                            addonPreprationModelHashMap.remove(addonPreprationModel.getPreparationId(), addonPreprationModel);
+                            try {
+                                String removedId = addonPreprationModel.getPreparationId();
+                                //Object myObj     = addonPreprationModel;
+                                addonPreprationModelHashMap.remove(removedId);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             getAddonandPrepSelectedListener.getHashMapPreprationAddons(addonPreprationModelHashMap);
-
                             if (selItem.contains(interest + ",")) {
                                 selItem = selItem.replace(interest + ",", "");
                             } else if (selItem.contains("," + interest)) {
@@ -683,22 +729,21 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                             } else if (selItem.contains(interest)) {
                                 selItem = selItem.replace(interest, "");
                             }
-
                             EventBus.getDefault().post(new RefreshData(true));
-
                         }
+
                     }
-                },navigation,isUpdated);
+                }, navigation, isUpdated);
 
                 addonPrepRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 4));
                 addonPrepRecyclerView.setAdapter(addOnPreAdapter);
                 for (AddonPreprationModel addonPreprationModel : addonPreprationModelHashMap.values()) {
                     for (AddonPreprationModel addonPreprationModel1 : preprationModelList) {
-                            if (addonPreprationModel.getPreparationName().equals(addonPreprationModel1.getPreparationName()) && addonPreprationModel1.getAddonId().equals(addonPreprationModel.getAddonId())) {
-                                addonPreprationModel.setSelect(true);
-                                addOnPreAdapter.notifyDataSetChanged();
-                            }
+                        if (addonPreprationModel.getPreparationName().equals(addonPreprationModel1.getPreparationName()) && addonPreprationModel1.getAddonId().equals(addonPreprationModel.getAddonId())) {
+                            addonPreprationModel.setSelect(true);
+                            addOnPreAdapter.notifyDataSetChanged();
                         }
+                    }
                 }
                 showSelectedPrep();
             });
@@ -752,7 +797,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
         getAddonandPrepSelectedListener = (GetAddonandPrepSelectedListener) context;
     }
 
-    public void alertDialog(String msg,Context context) {
+    public void alertDialog(String msg, Context context) {
         new AlertDialog.Builder(context)
                 .setTitle("Alert")
                 .setMessage(msg)
@@ -769,7 +814,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 101){
+        if (requestCode == 101) {
             new Thread(() -> {
                 if (edit.equals("edit")) {
                     addOnModelArrayList = getDataManager().loadallAddonByitems(orderItemModel.getItemId());
