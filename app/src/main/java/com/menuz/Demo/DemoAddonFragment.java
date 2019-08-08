@@ -279,6 +279,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
 
                             addOnChildAdapter.setItems(adddonChildModelArrayList);
                             addOnChildAdapter.setlimit(limit);
+                           // addonSubCatRecyclerView.getRecycledViewPool().clear();
                             addOnChildAdapter.notifyDataSetChanged();
 
                             handler.post(() -> {
@@ -362,6 +363,7 @@ public class DemoAddonFragment extends BaseFragment implements View.OnClickListe
                         addOnModelHashMap.remove(addOnModel.getAddonsGroupName());
                         getAddonandPrepSelectedListener.getAddonGroup(addOnModelHashMap);
                         adddonChildModelArrayList.clear();
+                        //addonSubCatRecyclerView.getRecycledViewPool().clear();
                         addOnChildAdapter.notifyDataSetChanged();
                         preprationName.setVisibility(View.GONE);
                         preprationModelList.clear();
